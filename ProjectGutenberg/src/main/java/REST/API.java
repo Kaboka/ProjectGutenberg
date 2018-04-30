@@ -19,5 +19,4 @@ public class API {
     public String test() {
         return new Gson().toJson("Hej");
     }
-
 }
