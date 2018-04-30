@@ -5,10 +5,25 @@
  */
 package REST;
 
+import com.google.gson.Gson;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriInfo;
+
 /**
  *
  * @author louis
  */
+@Path("api")
 public class API {
-    
+
+    @GET
+    @Path("test")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllCountries() {
+        return new Gson().toJson("Hej");
+    }
 }
