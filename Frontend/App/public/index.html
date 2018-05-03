@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Sample Site</title>
-    <link rel="stylesheet" type="text/css" href="../Stylesheets/index.css">
+    <link rel="stylesheet" type="text/css" href="./Stylesheets/index.css">
+    <script src="./Scripts/APIConsumer.js"></script>
 </head>
 <body>
-
-
     <div class="container">
         <div class="jumbotron">
             <h1>Hello from Index.html!</h1>
@@ -31,19 +30,6 @@
     </div>
 
     </div>
-
-    <script>
-        var request = new XMLHttpRequest();
-        request.open('GET', 'http://localhost:8080/ProjectGutenberg/api/api/test', true);
-        request.onload = function () {
-            var data = JSON.parse(this.response);
-            console.log(data);
-
-            const h2 = document.getElementById('header');
-            h2.textContent = data;
-        }
-        request.send();
-    </script>
 </body>
 
 </html>
