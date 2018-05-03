@@ -2,18 +2,12 @@ package Connectors;
 
 import static Connectors.PostgreSQLConnector.DBConnector;
 import static Connectors.PostgreSQLConnector.DBConnectorClose;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import org.junit.After;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import org.junit.Before;
-import org.junit.Test;
+import java.sql.*;
+import org.junit.*;
 
 public class PostgreSQLConnectorTest {
 
