@@ -11,4 +11,8 @@ package DataAccess;
  */
 public class PostgreSQLDataAccess {
     
+    public void getByCityName(){
+    
+    }
+    
 }
