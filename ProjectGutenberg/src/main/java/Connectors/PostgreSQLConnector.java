@@ -1,5 +1,6 @@
 package Connectors;
 
+import DataAccess.PostgreSQLDataAccess;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,22 +14,15 @@ public class PostgreSQLConnector {
         Statement st = null;
         ResultSet rs = null;
 
-        String query = "SELECT id, author_name\n"
-                + "	FROM \"schemaGutenberg\".author;";
-
         try {
 
             con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gutenberg", "postgres", "1234");
 
             st = con.createStatement();
-            rs = st.executeQuery(query);
 
-            if (rs.next()) {
-                System.out.println(rs.getString(1) + rs.getString(2));
-            }
             DriverManager driverManager = null;
             
-            getBook(con, driverManager, st, rs);
+            PostgreSQLDataAccess.getBook(con, driverManager, st, rs);
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -63,16 +57,5 @@ public class PostgreSQLConnector {
         resultSet.close();
         statement.close();
         connection.close();
-    }
-
-    public static void getBook(Connection connection, DriverManager driverManager, Statement statement, ResultSet resultSet) throws SQLException {
-        DBConnector(connection, driverManager);
-        statement = connection.createStatement();
-        resultSet = statement.executeQuery("SELECT id, author_name\n"
-                + "	FROM \"schemaGutenberg\".author;");
-        while (resultSet.next()) {
-            System.out.println(resultSet.getString(1) + ", " + resultSet.getString(2));
-        }
-        DBConnectorClose(connection, statement, resultSet);
     }
 }

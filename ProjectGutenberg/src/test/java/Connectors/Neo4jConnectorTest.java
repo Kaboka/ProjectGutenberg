@@ -12,6 +12,7 @@ public class Neo4jConnectorTest {
     @Before
     public void setUp() {
         try {
+            
             Neo4jConnector.DBConnector(driver, session);
         } catch (Exception e) {
             System.out.println("Exception - " + e);
