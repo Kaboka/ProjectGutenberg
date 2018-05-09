@@ -29,4 +29,9 @@ public class PostgreSQLDataAccess {
         }
         DBConnectorClose(connection, statement, resultSet);
     }
+
+    public void getByCityName(){
+    
+    }
+    
 }
