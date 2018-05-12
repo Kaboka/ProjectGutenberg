@@ -18,20 +18,29 @@ import java.sql.Statement;
  * @author ehn19
  */
 public class PostgreSQLDataAccess {
-    
+
     public static void getBook(Connection connection, DriverManager driverManager, Statement statement, ResultSet resultSet) throws SQLException {
         DBConnector(connection, driverManager);
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT id, author_name\n"
-                + "	FROM \"schemaGutenberg\".author;");
+                + "FROM \"schemaGutenberg\".author;");
         while (resultSet.next()) {
             System.out.println(resultSet.getString(1) + ", " + resultSet.getString(2));
         }
         DBConnectorClose(connection, statement, resultSet);
     }
 
-    public void getByCityName(){
-    
+    public static void getByCityName(Connection connection, DriverManager driverManager, Statement statement, ResultSet resultSet) throws SQLException {
+        DBConnector(connection, driverManager);
+        statement = connection.createStatement();
+        String city_name = "London";
+        resultSet = statement.executeQuery("SELECT book_title, author_name \n"
+                + "FROM \"schemaGutenberg\".book,\"schemaGutenberg\".city,\"schemaGutenberg\".author \n"
+                + "WHERE city_name = " + "'" + city_name + "'");
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString(1) + ", " + resultSet.getString(2));
+        }
+        DBConnectorClose(connection, statement, resultSet);
     }
-    
+
 }

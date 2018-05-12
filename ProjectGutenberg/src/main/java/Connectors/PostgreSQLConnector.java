@@ -22,7 +22,7 @@ public class PostgreSQLConnector {
 
             DriverManager driverManager = null;
             
-            PostgreSQLDataAccess.getBook(con, driverManager, st, rs);
+            PostgreSQLDataAccess.getByCityName(con, driverManager, st, rs);
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

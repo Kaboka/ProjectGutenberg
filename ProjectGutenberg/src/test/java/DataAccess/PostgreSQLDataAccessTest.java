@@ -20,9 +20,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
@@ -80,5 +77,6 @@ public class PostgreSQLDataAccessTest {
         assertEquals(conValue, 1);
         //Mockito.verify(, Mockito.times(1));
     }
+
     
 }
