@@ -5,19 +5,24 @@
  */
 package DataAccess;
 
+import Model.Book;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostgreSQLDataAccess {
 
-    public static void getBookAuthorByCity() throws SQLException {
+    public static List<Book> getBookAuthorByCity() throws SQLException {
         Connection connection = null;
         DriverManager driverManager = null;
         Statement statement;
         ResultSet resultSet;
+
+        ArrayList<Book> books = new ArrayList();
 
         try {
             connection = driverManager.getConnection("jdbc:postgresql://localhost:5432/gutenberg", "postgres", "1234");
@@ -40,12 +45,14 @@ public class PostgreSQLDataAccess {
                 + "	WHERE city.city_name = " + "'" + city_name + "'");
 
         while (resultSet.next()) {
-            System.out.println(resultSet.getString(1) + ", " + resultSet.getString(2));
+            books.add(new Book(resultSet.getString(1), resultSet.getString(2)));
         }
 
         resultSet.close();
         statement.close();
         connection.close();
+
+        return books;
     }
 
     public static void getCityByBook() throws SQLException {
