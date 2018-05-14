@@ -25,7 +25,7 @@ public class PostgreSQLDataAccess {
         ArrayList<Book> books = new ArrayList();
 
         try {
-            connection = driverManager.getConnection("jdbc:postgresql://localhost:5432/gutenberg", "postgres", "1234");
+            connection = driverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
         } catch (SQLException ex) {
             ex.toString();
         }
