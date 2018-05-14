@@ -31,54 +31,63 @@ import org.mockito.runners.MockitoJUnitRunner;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class PostgreSQLDataAccessTest {
-    
+
+    PostgreSQLConnector connector = new PostgreSQLConnector();
+
     @InjectMocks
     private PostgreSQLDataAccess dataAccess;
-    
-    @Mock
-    private PostgreSQLConnector DBCon; 
-            
+
     @Mock
     private Connection con;
-    
+
     @Mock
     private Statement stmt;
-    
+
     @Mock
-    private ResultSet resultSet; 
-    
+    private ResultSet resultSet;
+
     public PostgreSQLDataAccessTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
+
     }
-    
+
     @After
     public void tearDown() {
     }
 
     @Test
     public void testGetByCityName() throws SQLException {
-        String cityName; 
-        cityName = "Lyngby";
-        //Mockito.when();
         Mockito.when(con.createStatement()).thenReturn(stmt);
-        Mockito.when(stmt.executeQuery("SELECT book_name, author FROM books WHERE cityName = " + cityName)).thenReturn(resultSet);
-        int conValue = con.createStatement().executeUpdate("SELECT book_name, author FROM books WHERE cityName = " + cityName);
-        
-        ResultSet value = stmt.executeQuery("SELECT book_name, author FROM books WHERE cityName = " + cityName);
-        assertEquals(value, resultSet);
-        assertEquals(conValue, 1);
-        //Mockito.verify(, Mockito.times(1));
+        Mockito.when(stmt.executeQuery("")).thenReturn(resultSet);
+        stmt = con.createStatement();
+        ResultSet res = stmt.executeQuery("");
+        assertEquals(res, resultSet);
+        Mockito.verify(con).createStatement();
     }
-    
+
+    /*
+    Første test med mocks
+    @Test
+    public void testGetByCityName() throws SQLException {
+
+        Mockito.when(con.createStatement()).thenReturn(stmt);
+        Mockito.when(stmt.executeQuery("")).thenReturn(resultSet);
+        stmt = con.createStatement();
+        ResultSet res = stmt.executeQuery("");
+        assertEquals(res, resultSet);
+        Mockito.verify(con).createStatement();
+    }
+     */
 }
