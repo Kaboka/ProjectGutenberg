@@ -20,9 +20,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
@@ -49,17 +46,9 @@ public class PostgreSQLDataAccessTest {
     public PostgreSQLDataAccessTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
+ 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
 
     }
 
@@ -76,18 +65,4 @@ public class PostgreSQLDataAccessTest {
         assertEquals(res, resultSet);
         Mockito.verify(con).createStatement();
     }
-
-    /*
-    Første test med mocks
-    @Test
-    public void testGetByCityName() throws SQLException {
-
-        Mockito.when(con.createStatement()).thenReturn(stmt);
-        Mockito.when(stmt.executeQuery("")).thenReturn(resultSet);
-        stmt = con.createStatement();
-        ResultSet res = stmt.executeQuery("");
-        assertEquals(res, resultSet);
-        Mockito.verify(con).createStatement();
-    }
-     */
 }
