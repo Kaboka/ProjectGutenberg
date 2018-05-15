@@ -18,7 +18,7 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
     }
 
     @Override
-    public ArrayList<Book> getBookAuthorByCity(String city) throws SQLException {
+    public ArrayList<Book> getBookAuthorByCity(String city_name) throws SQLException {
 
         Statement statement;
         ResultSet resultSet;
@@ -26,7 +26,7 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
         ArrayList<Book> books = new ArrayList();
 
         statement = connection.createStatement();
-        String city_name = "London";
+        // String city_name = "London";
         resultSet = statement.executeQuery("SELECT book_title, author_name\n"
                 + "	FROM \"schemaGutenberg\".book AS book \n"
                 + "	INNER JOIN \"schemaGutenberg\".\"book-author\" AS book_author\n"
@@ -51,20 +51,47 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
     }
 
     @Override
-    public ArrayList<City> getCitiesByBookTitle(String title) throws SQLException {
-        ArrayList<City> cities = new ArrayList();
-        cities.add(new City("London"));
-
-        return cities;
-    }
-
-    public void getBookAuthorCityByAuthor() throws SQLException {
+    public ArrayList<City> getCitiesByBookTitle(String book_title) throws SQLException {
+//        ArrayList<City> cities = new ArrayList();
+//        cities.add(new City("London"));
+//
+//        return cities;
 
         Statement statement;
         ResultSet resultSet;
 
+        ArrayList<City> cities = new ArrayList();
+        //String book_title = "Moby Dick";
         statement = connection.createStatement();
-        String author_name = "L. Frank Baum";
+        resultSet = statement.executeQuery("SELECT city_name\n"
+                + "	FROM \"schemaGutenberg\".city AS city\n"
+                + "	INNER JOIN \"schemaGutenberg\".\"book-city\" AS book_city\n"
+                + "	ON (city.id = book_city.city_id)\n"
+                + "	INNER JOIN \"schemaGutenberg\".book AS book\n"
+                + "	ON (book_city.book_id = book.id)\n"
+                + "	WHERE book_title = " + "'" + book_title + "'");
+
+        while (resultSet.next()) {
+            cities.add(new City(resultSet.getString(1)));
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+
+        return cities;
+    }
+
+    @Override
+    public ArrayList<Book> getBookAuthorCityByAuthor(String author_name) throws SQLException {
+
+        Statement statement;
+        ResultSet resultSet;
+
+        ArrayList<Book> books = new ArrayList();
+
+        statement = connection.createStatement();
+        //String author_name = "L. Frank Baum";
         resultSet = statement.executeQuery("SELECT book_title, author_name, city_name\n"
                 + "	FROM \"schemaGutenberg\".book AS book \n"
                 + "	INNER JOIN \"schemaGutenberg\".\"book-author\" AS book_author\n"
@@ -78,17 +105,13 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
                 + "	WHERE author.author_name = " + "'" + author_name + "'");
 
         while (resultSet.next()) {
-            System.out.println(resultSet.getString(1) + ", " + resultSet.getString(2) + ", " + resultSet.getString(3));
+            books.add(new Book(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
         }
 
         resultSet.close();
         statement.close();
         connection.close();
-    }
 
-    @Override
-    public ArrayList<Book> getBookAuthorCityByAuthor(String author) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return books;
     }
-
 }

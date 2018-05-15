@@ -10,14 +10,14 @@ package Model;
  * @author ehn19
  */
 public class City {
-    private String name;
+    private String city_name;
 
     public City(String name) {
-        this.name = name;
+        this.city_name = name;
     }
     
     public String getName(){
-        return name; 
+        return city_name; 
     }
     
 }
