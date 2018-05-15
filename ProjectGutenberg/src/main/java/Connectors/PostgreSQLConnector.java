@@ -1,8 +1,24 @@
 package Connectors;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class PostgreSQLConnector {
+
+    private Connection dbConnection;
+
+    public void getDBConnection() throws ClassNotFoundException, SQLException {
+        try {
+            dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gutenberg", "postgres", "1234");
+        } catch (SQLException ex) {
+            ex.toString();
+        }
+    }
+
+    public int executeQuery(String query) throws ClassNotFoundException, SQLException {
+        return dbConnection.createStatement().executeUpdate(query);
+    }
 
     public static void main(String[] args) throws SQLException {
 //        System.out.println("Get book title and author name by city name");
