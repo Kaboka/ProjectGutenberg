@@ -1,29 +1,31 @@
 package DataAccess;
 
-import Connectors.PostgreSQLConnector;
+import Interfaces.DataAccessInterface;
 import Model.Book;
+import Model.City;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
-public class PostgreSQLDataAccess {
-    
-    private PostgreSQLConnector connection; 
-    
-    public PostgreSQLDataAccess(PostgreSQLConnector connection){
+public class PostgreSQLDataAccess implements DataAccessInterface {
+
+    private final Connection connection;
+
+    public PostgreSQLDataAccess(Connection connection) {
         this.connection = connection;
     }
 
-    public List<Book> getBookAuthorByCity() throws SQLException {
-        
+    @Override
+    public ArrayList<Book> getBookAuthorByCity(String city) throws SQLException {
+
         Statement statement;
         ResultSet resultSet;
 
         ArrayList<Book> books = new ArrayList();
-        
-        statement = connection.SQLConnector().createStatement();
+
+        statement = connection.createStatement();
         String city_name = "London";
         resultSet = statement.executeQuery("SELECT book_title, author_name\n"
                 + "	FROM \"schemaGutenberg\".book AS book \n"
@@ -48,18 +50,20 @@ public class PostgreSQLDataAccess {
         return books;
     }
 
-//    public ArrayList<City> getCitiesByBookTitle(String title) throws SQLException {
-//        ArrayList<City> cities = new ArrayList();
-//        cities.add(new City("London"));
-//        return cities; 
-//    }
+    @Override
+    public ArrayList<City> getCitiesByBookTitle(String title) throws SQLException {
+        ArrayList<City> cities = new ArrayList();
+        cities.add(new City("London"));
+
+        return cities;
+    }
 
     public void getBookAuthorCityByAuthor() throws SQLException {
-        
+
         Statement statement;
         ResultSet resultSet;
 
-        statement = connection.SQLConnector().createStatement();
+        statement = connection.createStatement();
         String author_name = "L. Frank Baum";
         resultSet = statement.executeQuery("SELECT book_title, author_name, city_name\n"
                 + "	FROM \"schemaGutenberg\".book AS book \n"
@@ -80,6 +84,11 @@ public class PostgreSQLDataAccess {
         resultSet.close();
         statement.close();
         connection.close();
+    }
+
+    @Override
+    public ArrayList<Book> getBookAuthorCityByAuthor(String author) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
