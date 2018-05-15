@@ -1,16 +1,23 @@
+
 package DataAccess;
 
 import Connectors.PostgreSQLConnector;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
+
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class PostgreSQLDataAccessTest {
@@ -21,6 +28,20 @@ public class PostgreSQLDataAccessTest {
     private Connection mockConnection;
     @Mock
     private Statement mockStatement;
+
+    PostgreSQLConnector connector = new PostgreSQLConnector();
+
+    @InjectMocks
+    private PostgreSQLDataAccess dataAccess;
+
+    @Mock
+    private Connection con;
+
+    @Mock
+    private Statement stmt;
+
+    @Mock
+    private ResultSet resultSet;
 
     @Before
     public void setUp() {
@@ -48,4 +69,15 @@ public class PostgreSQLDataAccessTest {
 //        assertEquals(conValue, 1);
 //        // Mockito.verify(con, Mockito.times(1));
 //    }
+
+
+    @Test
+    public void testGetByCityName() throws SQLException {
+        Mockito.when(con.createStatement()).thenReturn(stmt);
+        Mockito.when(stmt.executeQuery("")).thenReturn(resultSet);
+        stmt = con.createStatement();
+        ResultSet res = stmt.executeQuery("");
+        assertEquals(res, resultSet);
+        Mockito.verify(con).createStatement();
+    }
 }

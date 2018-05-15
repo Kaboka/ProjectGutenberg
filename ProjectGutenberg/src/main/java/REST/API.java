@@ -1,10 +1,6 @@
 package REST;
 
-import DataAccess.PostgreSQLDataAccess;
-import Model.Book;
 import com.google.gson.Gson;
-import java.sql.SQLException;
-import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -24,12 +20,12 @@ public class API {
         return new Gson().toJson("Hej");
     }
 
-    @GET
-    @Path("getBookAuthorByCity")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getBookAuthorByCity() throws SQLException {
-        List<Book> book = PostgreSQLDataAccess.getBookAuthorByCity();
-        return new Gson().toJson(book);
-    }
+//    @GET
+//    @Path("getBookAuthorByCity")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public String getBookAuthorByCity() throws SQLException {
+//        List<Book> book = PostgreSQLDataAccess.getBookAuthorByCity();
+//        return new Gson().toJson(book);
+//    }
 
 }

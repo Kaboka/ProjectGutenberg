@@ -7,8 +7,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./Stylesheets/index.css">
     <script src="./Scripts/Consumer.js"></script>
-    
+    <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+            </style>
 </head>
+
 <body>
     <div class="container">
         <div class="jumbotron">
@@ -28,10 +45,14 @@
             <input for="city" name="cityInput" type="text">
             <button type="submit" id="search">Search</button>
         </form>
-
     </div>
-
     </div>
+    <table class="dataTable">
+        <tr>
+        <th>Author</th>
+        <th>Title</th>
+        </tr>
+    </table>
 </body>
 
 </html>
