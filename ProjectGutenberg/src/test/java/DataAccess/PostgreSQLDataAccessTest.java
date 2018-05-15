@@ -30,9 +30,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class PostgreSQLDataAccessTest {
 
     PostgreSQLConnector connector = new PostgreSQLConnector();
+    PostgreSQLDataAccess dataAccess; 
 
     @InjectMocks
-    private PostgreSQLDataAccess dataAccess;
+    private PostgreSQLDataAccess mockDataAccess;
 
     @Mock
     private Connection con;
@@ -49,20 +50,31 @@ public class PostgreSQLDataAccessTest {
  
     @Before
     public void setUp() {
-
+        dataAccess = new PostgreSQLDataAccess(connector);
     }
 
     @After
     public void tearDown() {
     }
-
+    
     @Test
-    public void testGetByCityName() throws SQLException {
-        Mockito.when(con.createStatement()).thenReturn(stmt);
-        Mockito.when(stmt.executeQuery("")).thenReturn(resultSet);
-        stmt = con.createStatement();
-        ResultSet res = stmt.executeQuery("");
-        assertEquals(res, resultSet);
-        Mockito.verify(con).createStatement();
+    public void getCitiesByBookTitleMoby() throws SQLException{
+        String title = "Moby Dick";
+        assertEquals("London", dataAccess.getCitiesByBookTitle(title).get(0).getName());
     }
+    @Test
+    public void getCitiesByBookTitleWizard() throws SQLException{
+        String title = "Wizard of osThe Wonderful Wizard of Oz";
+        assertEquals("China", dataAccess.getCitiesByBookTitle(title).get(0).getName());
+    }
+
+//    @Test
+//    public void testGetByCityName() throws SQLException {
+//        Mockito.when(con.createStatement()).thenReturn(stmt);
+//        Mockito.when(stmt.executeQuery("")).thenReturn(resultSet);
+//        stmt = con.createStatement();
+//        ResultSet res = stmt.executeQuery("");
+//        assertEquals(res, resultSet);
+//        Mockito.verify(con).createStatement();
+//    }
 }

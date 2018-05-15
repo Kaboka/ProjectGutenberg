@@ -1,6 +1,10 @@
 package REST;
 
+import Connectors.PostgreSQLConnector;
+import Controller.Facade;
+import Controller.Facade.dbType;
 import DataAccess.PostgreSQLDataAccess;
+import Interfaces.FacadeInterface;
 import Model.Book;
 import com.google.gson.Gson;
 import java.sql.SQLException;
@@ -13,7 +17,7 @@ import javax.ws.rs.core.MediaType;
 @Path("api")
 
 public class API {
-
+    FacadeInterface facade = new Facade();
     public API() {
     }
 
@@ -28,7 +32,7 @@ public class API {
     @Path("getBookAuthorByCity")
     @Produces(MediaType.APPLICATION_JSON)
     public String getBookAuthorByCity() throws SQLException {
-        List<Book> book = PostgreSQLDataAccess.getBookAuthorByCity();
+        List<Book> book = facade.getBookAuthorByCity(dbType.POSTGRESS, "London");
         return new Gson().toJson(book);
     }
 
