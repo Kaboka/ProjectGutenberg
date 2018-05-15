@@ -3,7 +3,6 @@ package Connectors;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 public class PostgreSQLConnector {
 
@@ -16,7 +15,7 @@ public class PostgreSQLConnector {
         try {
             con = DriverManager.getConnection(url, username, password);
         } catch (SQLException ex) {
-            Logger.getLogger(ex.getSQLState());
+            ex.getSQLState();
         }
         return con;
     }
@@ -25,19 +24,6 @@ public class PostgreSQLConnector {
         con.close();
     }
 
-    private Connection dbConnection;
-
-    public void getDBConnection() throws ClassNotFoundException, SQLException {
-        try {
-            dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gutenberg", "postgres", "1234");
-        } catch (SQLException ex) {
-            ex.toString();
-        }
-    }
-
-    public int executeQuery(String query) throws ClassNotFoundException, SQLException {
-        return dbConnection.createStatement().executeUpdate(query);
-    }
 
     public static void main(String[] args) throws SQLException {
 //    public static void main(String[] args) throws SQLException {

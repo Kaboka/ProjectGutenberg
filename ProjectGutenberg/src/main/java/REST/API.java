@@ -10,9 +10,6 @@ import javax.ws.rs.core.MediaType;
 
 public class API {
 
-    public API() {
-    }
-
     @GET
     @Path("test")
     @Produces(MediaType.APPLICATION_JSON)
