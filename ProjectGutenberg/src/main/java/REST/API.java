@@ -41,7 +41,7 @@ public class API {
     @GET
     @Path("getBookAuthorByCity/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getBookAuthorByCityName(@PathParam("id") String city_name) throws SQLException {
+    public String getBookAuthorByCity(@PathParam("id") String city_name) throws SQLException {
         List<Book> books = facade.getBookAuthorByCity(dbType.POSTGRESS, city_name);
         return new Gson().toJson(books);
     }
