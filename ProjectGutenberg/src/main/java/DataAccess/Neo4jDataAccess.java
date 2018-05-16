@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataAccess;
 
+import org.neo4j.driver.v1.Record;
+import org.neo4j.driver.v1.Session;
+import org.neo4j.driver.v1.StatementResult;
 import Interfaces.DataAccessInterface;
 import Model.Book;
 import Model.City;
@@ -33,4 +31,12 @@ public class Neo4jDataAccess implements DataAccessInterface{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    // Getting book from database
+    public static void getBook(Session session, String query) {
+        StatementResult result = session.run(query);
+        while (result.hasNext()) {
+            Record record = result.next();
+            System.out.println(record.get("name").asString());
+        }
+    }
 }

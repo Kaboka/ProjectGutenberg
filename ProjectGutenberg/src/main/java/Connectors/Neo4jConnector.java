@@ -10,7 +10,7 @@ public class Neo4jConnector {
 
     public static void main(String[] args) {
         DBConnector(driver, session);
-        getBook(session, "MATCH (s:Person) RETURN s.name AS name, s.from AS from");
+//        getBook(session, "MATCH (s:Person) RETURN s.name AS name, s.from AS from");
         DBConnectorClose(driver, session);
     }
 
@@ -28,14 +28,5 @@ public class Neo4jConnector {
     public static void DBConnectorClose(Driver driver, Session session) {
         session.close();
         driver.close();
-    }
-
-    // Getting book from database
-    public static void getBook(Session session, String query) {
-        StatementResult result = session.run(query);
-        while (result.hasNext()) {
-            Record record = result.next();
-            System.out.println(record.get("name").asString());
-        }
     }
 }
