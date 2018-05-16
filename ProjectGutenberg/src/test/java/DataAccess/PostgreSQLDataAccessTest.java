@@ -119,7 +119,7 @@ public class PostgreSQLDataAccessTest {
     }
 
     @Test
-    public void getBookAuthorCityByAuthor() throws SQLException {
+    public void getBookAuthorCityByFrankBaum() throws SQLException {
         Connection con = DriverManager.getConnection(url, username, password);
 
         Statement stmt = con.createStatement();
@@ -144,10 +144,40 @@ public class PostgreSQLDataAccessTest {
             author_name = resultSet.getString(2);
             city_name = resultSet.getString(3);
         }
-        
+
         assertThat(book_title, is(equalTo("Fortune Hunters in China")));
         assertThat(author_name, is(equalTo("L. Frank Baum")));
         assertThat(city_name, is(equalTo("China")));
     }
+    
+// MANGLER TEST DATA
+//    @Test
+//    public void getBookCityByGeolocation() throws SQLException {
+//        Connection con = DriverManager.getConnection(url, username, password);
+//        Statement stmt = con.createStatement();
+//        
+//        String latitude = "???";
+//        String longitude = "???";
+//        
+//        ResultSet resultSet = stmt.executeQuery("SELECT book_title, city_name \n"
+//                + "	FROM \"schemaGutenberg\".book AS book \n"
+//                + "	INNER JOIN \"schemaGutenberg\".\"book-city\" AS book_city\n"
+//                + "	ON (book.id = book_city.book_id)\n"
+//                + "	INNER JOIN  \"schemaGutenberg\".city AS city\n"
+//                + "	ON (book_city.city_id = city.id)\n"
+//                + "	WHERE city.latitude = " + "'" + latitude + "'\n"
+//                + "	AND city.longitude = " + "'" + longitude + "'");
+//
+//        String book_title = "";
+//        String city_name = "";
+//
+//        while (resultSet.next()) {
+//            book_title = resultSet.getString(1);
+//            city_name = resultSet.getString(3);
+//        }
+//
+//        assertThat(book_title, is(equalTo("Fortune Hunters in China")));
+//        assertThat(city_name, is(equalTo("China")));
+//    }
 
 }

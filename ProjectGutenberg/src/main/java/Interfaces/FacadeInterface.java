@@ -16,9 +16,13 @@ import java.util.ArrayList;
  * @author ehn19
  */
 public interface FacadeInterface {
-    
+
     public ArrayList<Book> getBookAuthorByCity(dbType dbEnum, String city) throws SQLException;
-    public ArrayList<City> getCitiesByBookTitle(dbType dbEnum, String title);
-    public ArrayList<Book> getBookAuthorCityByAuthor(dbType dbEnum, String author);
-    
+
+    public ArrayList<City> getCitiesByBookTitle(dbType dbEnum, String title) throws SQLException;
+
+    public ArrayList<Book> getBookAuthorCityByAuthor(dbType dbEnum, String author) throws SQLException;
+
+    public ArrayList<Book> getBookCityByGeolocation(dbType dbEnum, String latitude, String longitude) throws SQLException;
+
 }
