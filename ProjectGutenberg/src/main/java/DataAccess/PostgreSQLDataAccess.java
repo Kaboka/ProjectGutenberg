@@ -61,7 +61,6 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
         ResultSet resultSet;
 
         ArrayList<City> cities = new ArrayList();
-        //String book_title = "Moby Dick";
         statement = connection.createStatement();
         resultSet = statement.executeQuery("SELECT city_name\n"
                 + "	FROM \"schemaGutenberg\".city AS city\n"
@@ -91,7 +90,6 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
         ArrayList<Book> books = new ArrayList();
 
         statement = connection.createStatement();
-        //String author_name = "L. Frank Baum";
         resultSet = statement.executeQuery("SELECT book_title, author_name, city_name\n"
                 + "	FROM \"schemaGutenberg\".book AS book \n"
                 + "	INNER JOIN \"schemaGutenberg\".\"book-author\" AS book_author\n"
@@ -106,6 +104,35 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
 
         while (resultSet.next()) {
             books.add(new Book(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+
+        return books;
+    }
+
+    @Override
+    public ArrayList<Book> getBookCityByGeolocation(String latitude, String longitude) throws SQLException {
+
+        Statement statement;
+        ResultSet resultSet;
+
+        ArrayList<Book> books = new ArrayList();
+
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery("SELECT book_title, city_name \n"
+                + "	FROM \"schemaGutenberg\".book AS book \n"
+                + "	INNER JOIN \"schemaGutenberg\".\"book-city\" AS book_city\n"
+                + "	ON (book.id = book_city.book_id)\n"
+                + "	INNER JOIN  \"schemaGutenberg\".city AS city\n"
+                + "	ON (book_city.city_id = city.id)\n"
+                + "	WHERE city.latitude = " + "'" + latitude + "'\n"
+                + "	AND city.longitude = " + "'" + longitude + "'");
+
+        while (resultSet.next()) {
+            books.add(new Book(resultSet.getString(1), resultSet.getString(2)));
         }
 
         resultSet.close();

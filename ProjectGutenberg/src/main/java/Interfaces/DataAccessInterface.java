@@ -19,4 +19,5 @@ public interface DataAccessInterface {
     public ArrayList<Book> getBookAuthorByCity(String city) throws SQLException;
     public ArrayList<City> getCitiesByBookTitle(String title) throws SQLException;
     public ArrayList<Book> getBookAuthorCityByAuthor(String author) throws SQLException;
+    public ArrayList<Book> getBookCityByGeolocation(String latitude, String longitude) throws SQLException;
 }

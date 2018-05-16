@@ -11,10 +11,6 @@ import Model.City;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author ehn19
- */
 public class Neo4jDataAccess implements DataAccessInterface{
 
     @Override
@@ -29,6 +25,11 @@ public class Neo4jDataAccess implements DataAccessInterface{
 
     @Override
     public ArrayList<Book> getBookAuthorCityByAuthor(String author) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Book> getBookCityByGeolocation(String latitude, String longitude) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
