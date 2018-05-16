@@ -5,3 +5,13 @@
 .searchForm label{
     font-weight: bold;    
 }
+
+#error{
+    font-weight: bold;
+    color: red; 
+}
+
+.dataTable {
+    margin-top: 10px;
+    width: 80%;
+}
