@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FrontendTest {
+
     static WebDriver driver;
     static String url = "http://localhost:7777/";
 
@@ -30,7 +31,7 @@ public class FrontendTest {
     public static void tearDown() {
         driver.quit();
     }
-    
+
     @Test
     public void test1() {
         System.out.println("Test 1. Verify that the DOM has loaded. "
@@ -48,18 +49,49 @@ public class FrontendTest {
             return true;
         });
     }
-    
+
+//    @Test
+//    public void test2(){
+//        System.out.println("Test 2. User story 1, AC3."
+//                + "Verify that the getBookAuthorByCity works as excepected. ");
+//        WebElement table = driver.findElement(By.tagName("tbody"));
+//        List<WebElement> rows = table.findElements(By.tagName("tr"));
+//        Assert.assertThat(rows.size(), is(0));
+//        WebElement input = driver.findElement(By.id("cityInput"));
+//        input.sendKeys("London");
+//        input.sendKeys(Keys.TAB);
+//        table = driver.findElement(By.tagName("tbody"));
+//        rows = table.findElements(By.tagName("tr"));
+//        Assert.assertThat(rows.size(), is(2));
+//    }
+//    @Test
+//    public void test3(){
+//        System.out.println("Test 3. User story 1, AC1");
+//        WebElement input = driver.findElement(By.id("cityInput"));
+////        input.clear();
+//        WebElement table = driver.findElement(By.className("tbody"));
+//        List<WebElement> rows = table.findElements(By.tagName("tr"));
+//        Assert.assertThat(rows.size(), is(0));
+//        input.sendKeys("Karlslunde");
+//        input.sendKeys(Keys.TAB);
+//        WebElement err = driver.findElement(By.id("errorText"));
+//        table = driver.findElement(By.className("tbody"));
+//        rows = table.findElements(By.tagName("tr"));
+//        Assert.assertThat(rows.size(), is(0));
+//        Assert.assertThat(err.getText(), is("Could not find any results"));
+//        
+//    }
     @Test
-    public void getBookAuthorByCity(){
-        System.out.println("Test 2. Verify that the getBookAuthorByCity works as excepected. ");
-        WebElement table = driver.findElement(By.className("tbody"));
+    public void test4() {
+        System.out.println("Test 2. User story 1, AC2.");
+        WebElement table = driver.findElement(By.tagName("tbody"));
         List<WebElement> rows = table.findElements(By.tagName("tr"));
         Assert.assertThat(rows.size(), is(0));
         WebElement input = driver.findElement(By.id("cityInput"));
-        input.sendKeys("London");
+        input.sendKeys("@ustralia");
         input.sendKeys(Keys.TAB);
-        table = driver.findElement(By.className("tbody"));
+        table = driver.findElement(By.tagName("tbody"));
         rows = table.findElements(By.tagName("tr"));
-        Assert.assertThat(rows.size(), is(2));
+        Assert.assertThat(rows.size(), is(0));
     }
 }
