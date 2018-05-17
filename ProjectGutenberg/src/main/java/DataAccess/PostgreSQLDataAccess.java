@@ -37,7 +37,7 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
                 + "	ON (book.id = book_city.book_id)\n"
                 + "	INNER JOIN  \"schemaGutenberg\".city AS city\n"
                 + "	ON (book_city.city_id = city.id)\n"
-                + "	WHERE city.city_name = " + "'" + city_name + "'");
+                + "	WHERE city.city_name LIKE " + "'" + city_name + "%'");
 
         while (resultSet.next()) {
             books.add(new Book(resultSet.getString(1), resultSet.getString(2)));

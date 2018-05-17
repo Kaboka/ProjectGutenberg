@@ -34,17 +34,15 @@
         </div>
     </div>
 
-    <div class="searchForm">
-        <form>
-            <label id="author">Author: </label>
-            <input for="author" name="authorInput" type="text">
-            <label id="bookTitle">Book Title: </label>
-            <input for="bookTitle" name="titleInput" type="text">
-            <label id="city">City: </label>
-            <input for="city" name="cityInput" id="cityInput" type="text" onchange="load()">
-        </form>
-        
-    </div>
+    <form class="searchForm">
+        <label id="author">Author: </label>
+        <input for="author" name="authorInput" type="text" onkeyup="load('authorInput')">
+        <label id="bookTitle">Book Title: </label>
+        <input for="bookTitle" name="titleInput" type="text" onkeyup="load('bookTitle')">
+        <label id="city">City: </label>
+        <input for="city" name="cityInput" id="cityInput" type="text" onkeyup="fromCity()">
+    </form>
+
     <p id="errorText"></p>
     <table class="dataTable">
         <thead>
