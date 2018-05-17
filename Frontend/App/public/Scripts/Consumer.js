@@ -32,6 +32,7 @@ function load() {
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             $('.dataTable .tbody').empty();
             $('#errorText').append("Could not find any results");
+            console.log(XMLHttpRequest.error);
         }
     }).then(function (data) {
         console.log(data);
