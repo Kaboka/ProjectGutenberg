@@ -1,5 +1,6 @@
 
 function fromCity() {
+    
     var input = $("#cityInput").val();
     $('.searchForm').keyup(function () {
         $.ajax({
@@ -7,7 +8,6 @@ function fromCity() {
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 $('.dataTable .tbody').empty();
                 $('#errorText').empty().append("Could not find any results");
-                console.log(XMLHttpRequest.error);
             }
         }).then(function (data) {
             console.log(data);

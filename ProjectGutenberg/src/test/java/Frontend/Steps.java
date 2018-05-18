@@ -11,7 +11,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -45,13 +47,13 @@ public class Steps {
         }
     }
 
-    @Then("^I should get (\\d+)$")
+    @Then("^I should get (\\d+) results$")
     public void i_should_get(int arg1) {
         WebElement table = driver.findElement(By.tagName("tbody"));
         List<WebElement> rows = table.findElements(By.tagName("tr"));
         Assert.assertThat(rows.size(), is(arg1));
     }
-   
+
     @And("^I should get error message \"([^\"]*)\"$")
     public void i_should_get_error(String arg1) {
         WebElement err = driver.findElement(By.id("errorText"));
