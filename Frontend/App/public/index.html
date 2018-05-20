@@ -34,13 +34,13 @@
         </div>
     </div>
 
-    <form class="searchForm">
+    <form class="searchForm" >
         <label id="author">Author: </label>
-        <input for="author" name="authorInput" type="text" onkeyup="load('authorInput')">
+        <input for="author" name="authorInput" type="text" id="authorInput" onkeyup="fromAuthor()">
         <label id="bookTitle">Book Title: </label>
-        <input for="bookTitle" name="titleInput" type="text" onkeyup="load('bookTitle')">
+        <input for="bookTitle" name="titleInput" type="text" id="titleInput" onkeyup="fromTitle()">
         <label id="city">City: </label>
-        <input for="city" name="cityInput" id="cityInput" type="text" onkeyup="fromCity()">
+        <input for="city" name="cityInput" id="cityInput" type="text" onchange="fromCity()">
     </form>
 
     <p id="errorText"></p>
