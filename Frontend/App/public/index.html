@@ -7,53 +7,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./Stylesheets/index.css">
     <script src="./Scripts/Consumer.js"></script>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+  
 </head>
-
 <body>
     <div class="container">
         <div class="jumbotron">
             <h1>Hello from Index.html!</h1>
         </div>
+        <div> 
+            <p>Search by: </p>
+            <ul style="list-style-type:none">
+                <li><a href="./searchByCity.html">City</a></li>
+                <li>Author</li>
+                <li>Title</li>
+                <li><a href="./searchByGeolocation.html">Geolocation</a></li>
+            </ul>
+        </div>
     </div>
-
-    <form class="searchForm" >
-        <label id="author">Author: </label>
-        <input for="author" name="authorInput" type="text" id="authorInput" onkeyup="fromAuthor()">
-        <label id="bookTitle">Book Title: </label>
-        <input for="bookTitle" name="titleInput" type="text" id="titleInput" onkeyup="fromTitle()">
-        <label id="city">City: </label>
-        <input for="city" name="cityInput" id="cityInput" type="text" onchange="fromCity()">
-    </form>
-
-    <p id="errorText"></p>
-    <table class="dataTable">
-        <thead>
-            <tr><th>Author</th><th>Title</th></tr>
-        </thead>
-        <tbody class="tbody">
-
-        </tbody>
-    </table>
-    </div>
-
 </body>
 
 </html>
