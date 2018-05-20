@@ -1,4 +1,4 @@
-package DataAccess;
+/*package DataAccess;
 
 import Connectors.PostgreSQLConnector;
 import java.sql.Connection;
@@ -180,4 +180,4 @@ public class PostgreSQLDataAccessTest {
 //        assertThat(city_name, is(equalTo("China")));
 //    }
 
-}
+}*/
