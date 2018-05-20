@@ -48,9 +48,9 @@ public class API {
     public String getCitiesByBookTitle(@PathParam("id") String book_title) throws SQLException, NotFoundExceptionMapper {
         allowCrossDomainAccess();
         List<City> cities = facade.getCitiesByBookTitle(dbType.POSTGRESS, book_title);
-        if (cities.isEmpty()) {
-            throw new NotFoundExceptionMapper("No cities found with the given book title");
-        }
+//        if (cities.isEmpty()) {
+//            throw new NotFoundExceptionMapper("No cities found with the given book title");
+//        }
         return new Gson().toJson(cities);
     }
 

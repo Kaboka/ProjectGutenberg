@@ -2,7 +2,7 @@
 function loadMapFromTitle() {
     
     var input = $("#titleInput").val();
-    $('.searchForm').keyup(function () {
+
         $.ajax({
             url: "http://localhost:8080/ProjectGutenberg/api/api/getCitiesByBookTitle/" + input,
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -24,8 +24,7 @@ function loadMapFromTitle() {
                         marker.bindPopup("<b>" + data[index].city_name + "</b>").openPopup();
                     })
                 $('#errorText').empty();
-
             }
         });
-    });
+
 };
