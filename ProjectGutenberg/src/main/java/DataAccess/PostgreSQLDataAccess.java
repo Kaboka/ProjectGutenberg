@@ -4,6 +4,7 @@ import Interfaces.DataAccessInterface;
 import Model.Book;
 import Model.City;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -52,30 +53,30 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
 
     @Override
     public ArrayList<City> getCitiesByBookTitle(String book_title) throws SQLException {
-//        ArrayList<City> cities = new ArrayList();
-//        cities.add(new City("London"));
-//
-//        return cities;
-
+        System.out.println("IN DATA ACCESS METHOD");
         Statement statement;
         ResultSet resultSet;
 
         ArrayList<City> cities = new ArrayList();
-        statement = connection.createStatement();
-        resultSet = statement.executeQuery("SELECT city_name, city.longitude, city.latitude\n"
-                + "	FROM \"schemaGutenberg\".city AS city\n"
-                + "	INNER JOIN \"schemaGutenberg\".\"book-city\" AS book_city\n"
-                + "	ON (city.id = book_city.city_id)\n"
-                + "	INNER JOIN \"schemaGutenberg\".book AS book\n"
-                + "	ON (book_city.book_id = book.id)\n"
-                + "	WHERE book_title = " + "'" + book_title + "'");
-
-        while (resultSet.next()) {
-            cities.add(new City(resultSet.getString(1),resultSet.getFloat("longitude"),resultSet.getFloat("latitude")));
+        String query = "SELECT city_name, city.longitude, city.latitude\n" 
+                + "	FROM \"schemaGutenberg\".city AS city\n" 
+                + "	INNER JOIN \"schemaGutenberg\".\"book-city\" AS book_city\n" 
+                + "	ON (city.id = book_city.city_id)\n" 
+                + "	INNER JOIN \"schemaGutenberg\".book AS book\n" 
+                + "	ON (book_city.book_id = book.id)\n" 
+                + "	WHERE book_title = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, book_title);
+            resultSet = pstmt.executeQuery();
+            
+            while (resultSet.next()) {
+                cities.add(new City(resultSet.getString(1),resultSet.getFloat(2),resultSet.getFloat(3)));
+            }
+            
+            
         }
-
+        
         resultSet.close();
-        statement.close();
         connection.close();
 
         return cities;
