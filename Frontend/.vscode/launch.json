@@ -8,7 +8,11 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
+<<<<<<< HEAD
+            "program": "${workspaceFolder}\\index.js"
+=======
             "program": "${workspaceRoot}\\index.js"
+>>>>>>> 21c3efce0a8fbd3988407d44a9bd7822ac168aca
         }
     ]
 }

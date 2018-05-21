@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Frontend;
+/*package Frontend;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -60,4 +60,4 @@ public class Steps {
         Assert.assertThat(err.getText(), is(arg1));
         driver.quit();
     }
-}
+}*/

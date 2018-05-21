@@ -9,16 +9,26 @@ import Model.City;
 import com.google.gson.Gson;
 import java.sql.SQLException;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 @Path("api")
 
 public class API {
 
+    @Context
+    private HttpServletResponse servletResponse;
+
+    private void allowCrossDomainAccess() {
+        if (servletResponse != null){
+            servletResponse.setHeader("Access-Control-Allow-Origin", "*");
+        }
+    }
     FacadeInterface facade = new Facade();
 
     @GET
@@ -36,6 +46,7 @@ public class API {
     @Path("getCitiesByBookTitle/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getCitiesByBookTitle(@PathParam("id") String book_title) throws SQLException, NotFoundExceptionMapper {
+        allowCrossDomainAccess();
         List<City> cities = facade.getCitiesByBookTitle(dbType.POSTGRESS, book_title);
 //        if (cities.isEmpty()) {
 //            throw new NotFoundExceptionMapper("No cities found with the given book title");
@@ -47,6 +58,7 @@ public class API {
     @Path("getBookAuthorCityByAuthor/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getBookAuthorCityByAuthor(@PathParam("id") String author_name) throws SQLException, NotFoundExceptionMapper {
+        allowCrossDomainAccess();
         List<Book> books = facade.getBookAuthorCityByAuthor(dbType.POSTGRESS, author_name);
         if (books.isEmpty()) {
             throw new NotFoundExceptionMapper("No book found with the given author name");

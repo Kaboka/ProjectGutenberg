@@ -1,4 +1,4 @@
-package DataAccess;
+/*package DataAccess;
 
 import Connectors.Neo4jConnector;
 import org.junit.*;
@@ -29,4 +29,4 @@ public class Neo4jDataAccessTest {
         
     }
     
-}
+}*/
