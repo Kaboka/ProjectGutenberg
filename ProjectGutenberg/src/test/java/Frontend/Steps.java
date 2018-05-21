@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*package Frontend;
+package Frontend;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -23,11 +23,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Steps {
 
     static WebDriver driver;
-    static String url = "http://localhost:7777/";
+    static String url = "http://localhost:7777/searchByCity.html";
     Thread t;
     String cityName;
 
-    @Given("^A a city name is \"(.*)\"$")
+    @Given("^A city name is \"(.*)\"$")
     public void cityName(String city) {
         System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
@@ -60,4 +60,4 @@ public class Steps {
         Assert.assertThat(err.getText(), is(arg1));
         driver.quit();
     }
-}*/
+}
