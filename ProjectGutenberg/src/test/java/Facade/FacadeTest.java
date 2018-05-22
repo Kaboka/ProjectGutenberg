@@ -4,6 +4,7 @@ import Controller.Facade;
 import static Controller.Facade.dbType.NEO;
 import static Controller.Facade.dbType.POSTGRESS;
 import DataAccess.PostgreSQLDataAccess;
+import Interfaces.DataAccessInterface;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,22 +24,69 @@ public class FacadeTest {
     private Facade facade;
     
     @Mock
-    private PostgreSQLDataAccess pda;
+    private DataAccessInterface accessNeo4J;
     
     @Mock
-    private ArrayList res;
+    private DataAccessInterface accessPostgres;
     
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        facade = new Facade();
+        facade = new Facade(accessPostgres, accessNeo4J);
     }
     
     @Test
-    public void testCorrectDataAccess() throws SQLException{
-        when(pda.getBookAuthorByCity("")).thenReturn(res);
+    public void testPostgressDataAccessCity() throws SQLException{
         facade.getBookAuthorByCity(POSTGRESS, "");
-        verify(pda).getBookAuthorByCity("");
+        
+        verify(accessPostgres).getBookAuthorByCity("");
+    }
+    
+    @Test
+    public void testNeoDataAccessCity() throws SQLException{
+        facade.getBookAuthorByCity(NEO, "");
+        
+        verify(accessNeo4J).getBookAuthorByCity("");
+    }
+    
+    @Test
+    public void testPostgressDataAccessAuthor() throws SQLException{
+        facade.getBookAuthorCityByAuthor(POSTGRESS, "");
+        
+        verify(accessPostgres).getBookAuthorCityByAuthor("");
+    }
+    
+    @Test
+    public void testNeoDataAccessAuthor() throws SQLException{
+        facade.getBookAuthorCityByAuthor(NEO, "");
+        
+        verify(accessNeo4J).getBookAuthorCityByAuthor("");
+    }
+    @Test
+    public void testPostgressDataAccessTitle() throws SQLException{
+        facade.getCitiesByBookTitle(POSTGRESS, "");
+        
+        verify(accessPostgres).getCitiesByBookTitle("");
+    }
+    
+    @Test
+    public void testNeoDataAccessTitle() throws SQLException{
+        facade.getCitiesByBookTitle(NEO, "");
+        
+        verify(accessNeo4J).getCitiesByBookTitle("");
+    }
+    @Test
+    public void testPostgressDataAccessGeolocation() throws SQLException{
+        facade.getBookCityByGeolocation(POSTGRESS, "", "");
+        
+        verify(accessPostgres).getBookCityByGeolocation("", "");
+    }
+    
+    @Test
+    public void testNeoDataAccessGeolocation() throws SQLException{
+        facade.getBookCityByGeolocation(NEO, "", "");
+        
+        verify(accessNeo4J).getBookCityByGeolocation("", "");
     }
     
 }
