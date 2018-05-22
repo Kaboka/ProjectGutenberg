@@ -16,7 +16,6 @@ and open the template in the editor.
             com.thetransactioncompany.cors.CORSFilter 
         </filter-class> 
     </filter>
-
     <filter-mapping> 
         <filter-name>CORS</filter-name> 
         <url-pattern>/api/*</url-pattern> 

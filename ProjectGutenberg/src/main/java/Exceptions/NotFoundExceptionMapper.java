@@ -7,6 +7,10 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class NotFoundExceptionMapper extends Exception implements ExceptionMapper<NotFoundExceptionMapper> {
 
+    public NotFoundExceptionMapper(){
+        
+    }
+    
     public NotFoundExceptionMapper(String string) {
         super(string);
     }

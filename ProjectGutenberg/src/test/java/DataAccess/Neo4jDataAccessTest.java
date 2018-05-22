@@ -28,5 +28,4 @@ public class Neo4jDataAccessTest {
     public void testGetBook() {
         
     }
-    
 }

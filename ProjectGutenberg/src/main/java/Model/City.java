@@ -10,14 +10,26 @@ package Model;
  * @author ehn19
  */
 public class City {
-    private String city_name;
+    private final String city_name;
+    private final float longitude;
+    private final float latitude;
 
-    public City(String name) {
+    public City(String name ,float longitude, float latitude) {
         this.city_name = name;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
     
     public String getName(){
         return city_name; 
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public float getLatitude() {
+        return latitude;
     }
     
 }
