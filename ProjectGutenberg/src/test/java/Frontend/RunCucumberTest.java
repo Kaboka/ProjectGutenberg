@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package Frontend;
-//
+package Frontend;
+
 //import cucumber.api.CucumberOptions;
 //import cucumber.api.junit.Cucumber;
 //import org.junit.runner.RunWith;

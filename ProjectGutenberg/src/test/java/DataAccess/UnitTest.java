@@ -1,36 +1,67 @@
 package DataAccess;
 
+import Connectors.PostgreSQLConnector;
+import Interfaces.DataAccessInterface;
+import Model.Book;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static org.hamcrest.CoreMatchers.is;
+import java.sql.Statement;
+import java.util.ArrayList;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+import org.junit.After;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import static org.mockito.Matchers.anyString;
 import org.mockito.Mock;
-import org.junit.Assert;
-import static org.mockito.Mockito.when;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class UnitTest {
+
+    private DataAccessInterface dataAccess;
+
     @Mock
-    private Connection connection;
-    
-    @Mock 
-    private PreparedStatement pstmt; 
-    
+    private Connection con;
     @Mock
-    private ResultSet res; 
-    
-    PostgreSQLDataAccess pda;
-    
+    private PreparedStatement stmt;
+    @Mock
+    private ResultSet resultSet;
+
     @Before
     public void setUp() {
-        pda = new PostgreSQLDataAccess(connection);
+        MockitoAnnotations.initMocks(this);
+        dataAccess = new PostgreSQLDataAccess(con);
     }
-    
+
+    @After
+    public void tearDown() {
+    }    
+
     @Test
-    public void testGetBookAuthorByCity() throws SQLException{
-        
+    public void getBookAuthorByCityOneBook() throws SQLException {
+        Mockito.when(con.prepareStatement(anyString())).thenReturn(stmt);
+        Mockito.when(stmt.executeQuery()).thenReturn(resultSet);
+        Mockito.when(resultSet.next()).thenReturn(true).thenReturn(false);
+        Mockito.when(resultSet.getString(1)).thenReturn("The Wonderful Wizard of Oz");
+        Mockito.when(resultSet.getString(2)).thenReturn("L. Frank Baum");
+        ArrayList<Book> books = dataAccess.getBookAuthorByCity("London");
+        assertThat(books.get(0).getTitle(), is(equalTo("The Wonderful Wizard of Oz")));
+        assertThat(books.get(0).getAuthor(), is(equalTo("L. Frank Baum")));
     }
     
+    @Test(expected = SQLException.class)
+    public void getBookAuthorByCityException() throws SQLException {
+        Mockito.when(con.prepareStatement(anyString())).thenReturn(stmt);
+        Mockito.when(stmt.executeQuery()).thenThrow(new SQLException());
+        ArrayList<Book> books = dataAccess.getBookAuthorByCity("London or 1 = 1--");
+    }
 }
