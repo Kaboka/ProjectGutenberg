@@ -1,4 +1,4 @@
-/*package DataAccess;
+package DataAccess;
 
 import Connectors.Neo4jConnector;
 import org.junit.*;
@@ -7,7 +7,7 @@ import org.neo4j.driver.v1.*;
 public class Neo4jDataAccessTest {
     
     // Fields
-    public static Driver driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "class"));
+    public static Driver driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "1234"));
     public static Session session = driver.session();
     
     @Before
@@ -28,5 +28,4 @@ public class Neo4jDataAccessTest {
     public void testGetBook() {
         
     }
-    
-}*/
+}
