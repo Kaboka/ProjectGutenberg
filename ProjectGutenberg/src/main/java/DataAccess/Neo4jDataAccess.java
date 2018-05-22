@@ -1,8 +1,6 @@
 package DataAccess;
 
-import org.neo4j.driver.v1.Record;
-import org.neo4j.driver.v1.Session;
-import org.neo4j.driver.v1.StatementResult;
+import org.neo4j.driver.v1.*;
 import Interfaces.DataAccessInterface;
 import Model.Book;
 import Model.City;

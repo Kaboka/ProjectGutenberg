@@ -5,7 +5,7 @@ import org.neo4j.driver.v1.*;
 public class Neo4jConnector {
 
     // Fields
-    public static Driver driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "class"));
+    public static Driver driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "1234"));
     public static Session session = driver.session();
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class Neo4jConnector {
     // Connecting to Neo4j database
     public static void DBConnector(Driver driver, Session session) {
         try {
-            driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "class"));
+            driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "1234"));
             session = driver.session();
         } catch (Exception e) {
             System.out.println("Exception - " + e);
