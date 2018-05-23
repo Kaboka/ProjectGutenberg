@@ -1,5 +1,6 @@
 package DataAccess;
 
+import Connectors.PostgreSQLConnector;
 import Interfaces.DataAccessInterface;
 import Model.Book;
 import Model.City;
@@ -12,15 +13,16 @@ import java.util.ArrayList;
 
 public class PostgreSQLDataAccess implements DataAccessInterface {
 
-    private final Connection connection;
+    private final PostgreSQLConnector  connector;
 
-    public PostgreSQLDataAccess(Connection connection) {
-        this.connection = connection;
+    public PostgreSQLDataAccess(PostgreSQLConnector connector) {
+        this.connector = connector;
     }
 
     @Override
     public ArrayList<Book> getBookAuthorByCity(String city_name) throws SQLException {
         ResultSet resultSet;
+        Connection connection = connector.SQLConnector();
         ArrayList<Book> books = new ArrayList();
         String query = "SELECT book_title, author_name\n"
                 + "	FROM \"schemaGutenberg\".book AS book \n"
@@ -49,7 +51,7 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
     @Override
     public ArrayList<City> getCitiesByBookTitle(String book_title) throws SQLException {
         ResultSet resultSet;
-
+        Connection connection = connector.SQLConnector();
         ArrayList<City> cities = new ArrayList();
         String query = "SELECT city_name, city.longitude, city.latitude\n"
                 + "	FROM \"schemaGutenberg\".city AS city\n"
@@ -76,6 +78,7 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
     @Override
     public ArrayList<Book> getBookAuthorCityByAuthor(String author_name) throws SQLException {
         ResultSet resultSet;
+        Connection connection = connector.SQLConnector();
         ArrayList<Book> books = new ArrayList();
         String query = "SELECT book_title, author_name, city_name, city.longitude, city.latitude\n"
                 + "	FROM \"schemaGutenberg\".book AS book \n"
@@ -122,7 +125,7 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
     public ArrayList<Book> getBookCityByGeolocation(String latitude, String longitude) throws SQLException {
         Statement statement;
         ResultSet resultSet;
-
+        Connection connection = connector.SQLConnector();
         ArrayList<Book> books = new ArrayList();
 
         statement = connection.createStatement();

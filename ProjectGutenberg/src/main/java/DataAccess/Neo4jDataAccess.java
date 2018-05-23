@@ -37,6 +37,7 @@ public class Neo4jDataAccess implements DataAccessInterface{
             Record record = result.next();
             cities.add(new City(record.get("c").get("city_name").asString(), record.get("c").get("longitude").asDouble(), record.get("c").get("latitude").asDouble()));
         }
+        connector.DBConnectorClose();
         return cities;
     }
 
@@ -51,6 +52,7 @@ public class Neo4jDataAccess implements DataAccessInterface{
             book.addCity(new City(record.get("c").get("city_name").asString(), record.get("c").get("longitude").asDouble(), record.get("c").get("latitude").asDouble()));
             books.add(book);
         }
+        connector.DBConnectorClose();
         return books;
     }
 
@@ -65,6 +67,7 @@ public class Neo4jDataAccess implements DataAccessInterface{
             book.addCity(new City(record.get("c").get("city_name").asString(), record.get("c").get("longitude").asDouble(), record.get("c").get("latitude").asDouble()));
             books.add(book);
         }
+        connector.DBConnectorClose();
         return books;
     }
 }

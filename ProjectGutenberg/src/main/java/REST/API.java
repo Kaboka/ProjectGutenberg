@@ -33,7 +33,7 @@ public class API {
             servletResponse.setHeader("Access-Control-Allow-Origin", "*");
         }
     }
-    FacadeInterface facade = new Facade(new PostgreSQLDataAccess(new PostgreSQLConnector().SQLConnector()), new Neo4jDataAccess(new Neo4jConnector()));
+    FacadeInterface facade = new Facade(new PostgreSQLDataAccess(new PostgreSQLConnector()), new Neo4jDataAccess(new Neo4jConnector()));
 
     @GET
     @Path("getBookAuthorByCity/{id}")

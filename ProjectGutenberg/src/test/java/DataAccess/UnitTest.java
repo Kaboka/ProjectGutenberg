@@ -28,9 +28,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class UnitTest {
 
     private DataAccessInterface dataAccess;
-
+    
     @Mock
     private Connection con;
+
+    @Mock
+    private PostgreSQLConnector connector;
     @Mock
     private PreparedStatement stmt;
     @Mock
@@ -39,7 +42,7 @@ public class UnitTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        dataAccess = new PostgreSQLDataAccess(con);
+        dataAccess = new PostgreSQLDataAccess(connector);
     }
 
     @After
@@ -48,6 +51,7 @@ public class UnitTest {
 
     @Test
     public void getBookAuthorByCityOneBook() throws SQLException {
+        Mockito.when(connector.SQLConnector()).thenReturn(con);
         Mockito.when(con.prepareStatement(anyString())).thenReturn(stmt);
         Mockito.when(stmt.executeQuery()).thenReturn(resultSet);
         Mockito.when(resultSet.next()).thenReturn(true).thenReturn(false);
@@ -60,6 +64,7 @@ public class UnitTest {
     
     @Test(expected = SQLException.class)
     public void getBookAuthorByCityException() throws SQLException {
+        Mockito.when(connector.SQLConnector()).thenReturn(con);
         Mockito.when(con.prepareStatement(anyString())).thenReturn(stmt);
         Mockito.when(stmt.executeQuery()).thenThrow(new SQLException());
         ArrayList<Book> books = dataAccess.getBookAuthorByCity("London or 1 = 1--");
@@ -67,6 +72,7 @@ public class UnitTest {
     
     @Test
     public void getBookAuthorCityByAuthor() throws SQLException {
+        Mockito.when(connector.SQLConnector()).thenReturn(con);
         Mockito.when(con.prepareStatement(anyString())).thenReturn(stmt);
         Mockito.when(stmt.executeQuery()).thenReturn(resultSet);
         Mockito.when(resultSet.next()).thenReturn(true).thenReturn(false);

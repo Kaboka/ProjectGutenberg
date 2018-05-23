@@ -1,6 +1,7 @@
 package DataAccess;
 
 import Connectors.Neo4jConnector;
+import Connectors.PostgreSQLConnector;
 import Interfaces.DataAccessInterface;
 import Model.Book;
 import Model.City;
@@ -23,15 +24,13 @@ public class IntegrationTest {
 
     private DataAccessInterface dataAccess;
     Connection con;
-    private static final String url = "jdbc:postgresql://localhost:5432/gutenberg";
-    private static final String username = "postgres";
-    private static final String password = "1234";
+   
 
     @Parameters
     public static Collection<DataAccessInterface> data() throws SQLException {
         Collection<DataAccessInterface> data = new ArrayList<>();
         data.add(new Neo4jDataAccess(new Neo4jConnector()));
-        data.add(new PostgreSQLDataAccess(DriverManager.getConnection(url, username, password)));
+        data.add(new PostgreSQLDataAccess(new PostgreSQLConnector()));
         return data;
     }
     
