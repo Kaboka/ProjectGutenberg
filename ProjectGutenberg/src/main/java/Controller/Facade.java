@@ -24,15 +24,20 @@ public class Facade implements FacadeInterface {
     public static enum dbType {
         NEO, POSTGRESS
     };
-    private DataAccessInterface access;
-    PostgreSQLConnector connection = new PostgreSQLConnector();
+    private DataAccessInterface accessNeo4J, accessPostgres, access;
+    private PostgreSQLConnector connection = new PostgreSQLConnector();
+    
+    public Facade(DataAccessInterface postgres, DataAccessInterface neo4j){
+        this.accessNeo4J = neo4j;
+        this.accessPostgres = postgres;
+    }
 
     @Override
     public ArrayList<Book> getBookAuthorByCity(dbType db, String city) throws SQLException {
         if (db == dbType.NEO) {
-            access = new Neo4jDataAccess();
+            access = accessNeo4J;
         } else {
-            access = new PostgreSQLDataAccess(connection.SQLConnector());
+            access = accessPostgres;
         }
         return access.getBookAuthorByCity(city);
     }
@@ -40,9 +45,9 @@ public class Facade implements FacadeInterface {
     @Override
     public ArrayList<City> getCitiesByBookTitle(dbType db, String book_title) throws SQLException {
         if (db == dbType.NEO) {
-            access = new Neo4jDataAccess();
+            access = accessNeo4J;
         } else {
-            access = new PostgreSQLDataAccess(connection.SQLConnector());
+            access = accessPostgres;
         }
         return access.getCitiesByBookTitle(book_title);
     }
@@ -50,9 +55,9 @@ public class Facade implements FacadeInterface {
     @Override
     public ArrayList<Book> getBookAuthorCityByAuthor(dbType db, String author_name) throws SQLException {
         if (db == dbType.NEO) {
-            access = new Neo4jDataAccess();
+            access = accessNeo4J;
         } else {
-            access = new PostgreSQLDataAccess(connection.SQLConnector());
+            access = accessPostgres;
         }
         return access.getBookAuthorCityByAuthor(author_name);
     }
@@ -60,9 +65,9 @@ public class Facade implements FacadeInterface {
     @Override
     public ArrayList<Book> getBookCityByGeolocation(dbType db, String latitude, String longitude) throws SQLException {
         if (db == dbType.NEO) {
-            access = new Neo4jDataAccess();
+            access = accessNeo4J;
         } else {
-            access = new PostgreSQLDataAccess(connection.SQLConnector());
+            access = accessPostgres;
         }
         return access.getBookCityByGeolocation(latitude, longitude);
     }

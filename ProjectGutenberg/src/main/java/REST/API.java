@@ -1,7 +1,11 @@
 package REST;
 
+import Connectors.Neo4jConnector;
+import Connectors.PostgreSQLConnector;
 import Controller.Facade;
 import Controller.Facade.dbType;
+import DataAccess.Neo4jDataAccess;
+import DataAccess.PostgreSQLDataAccess;
 import Exceptions.NotFoundExceptionMapper;
 import Interfaces.FacadeInterface;
 import Model.Book;
@@ -29,7 +33,7 @@ public class API {
             servletResponse.setHeader("Access-Control-Allow-Origin", "*");
         }
     }
-    FacadeInterface facade = new Facade();
+    FacadeInterface facade = new Facade(new PostgreSQLDataAccess(new PostgreSQLConnector()), new Neo4jDataAccess(new Neo4jConnector()));
 
     @GET
     @Path("getBookAuthorByCity/{id}")
@@ -48,9 +52,9 @@ public class API {
     public String getCitiesByBookTitle(@PathParam("id") String book_title) throws SQLException, NotFoundExceptionMapper {
         allowCrossDomainAccess();
         List<City> cities = facade.getCitiesByBookTitle(dbType.POSTGRESS, book_title);
-//        if (cities.isEmpty()) {
-//            throw new NotFoundExceptionMapper("No cities found with the given book title");
-//        }
+        if (cities.isEmpty()) {
+            throw new NotFoundExceptionMapper("No cities found with the given book title");
+        }
         return new Gson().toJson(cities);
     }
 

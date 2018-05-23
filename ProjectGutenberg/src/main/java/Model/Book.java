@@ -15,6 +15,11 @@ public class Book {
         this.author_name = author_name;
         cities = new ArrayList<>();
     }
+    
+    public Book(String book_title) {
+        this.book_title = book_title;
+        cities = new ArrayList<>();
+    }
 
     public ArrayList<City> getCities() {
         return cities;

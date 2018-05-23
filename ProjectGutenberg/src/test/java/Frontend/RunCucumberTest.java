@@ -5,11 +5,11 @@
  */
 package Frontend;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
-import org.junit.runner.RunWith;
-
-@RunWith(Cucumber.class)
-@CucumberOptions(plugin = {"pretty"})
-public class RunCucumberTest {
-}
+//import cucumber.api.CucumberOptions;
+//import cucumber.api.junit.Cucumber;
+//import org.junit.runner.RunWith;
+//
+//@RunWith(Cucumber.class)
+//@CucumberOptions(plugin = {"pretty"})
+//public class RunCucumberTest {
+//}

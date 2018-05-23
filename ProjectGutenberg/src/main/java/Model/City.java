@@ -11,24 +11,28 @@ package Model;
  */
 public class City {
     private String city_name;
-    private float longitude;
-    private float latitude;
+    private double longitude;
+    private double latitude;
 
-    public City(String name ,float longitude, float latitude) {
+    public City(String name ,double longitude, double latitude) {
         this.city_name = name;
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+    
+    public City(String name){
+        this.city_name = name;
     }
     
     public String getName(){
         return city_name; 
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
     
