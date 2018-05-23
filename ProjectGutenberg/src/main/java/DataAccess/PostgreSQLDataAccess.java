@@ -134,7 +134,10 @@ public class PostgreSQLDataAccess implements DataAccessInterface {
                 + "	ON (book_city.city_id = city.id)\n"
                 + "     WHERE Haversine(" + longitude + ", " + latitude + ", city.longitude, city.latitude) < 10");
         while (resultSet.next()) {
-            books.add(new Book(resultSet.getString(1), resultSet.getString(2)));
+            Book book = new Book(resultSet.getString(1));
+            book.addCity(new City(resultSet.getString(2)));
+            books.add(book);
+           
         }
         resultSet.close();
         statement.close();

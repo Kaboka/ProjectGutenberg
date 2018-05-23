@@ -1,5 +1,6 @@
 package REST;
 
+import Connectors.Neo4jConnector;
 import Connectors.PostgreSQLConnector;
 import Controller.Facade;
 import Controller.Facade.dbType;
@@ -32,7 +33,7 @@ public class API {
             servletResponse.setHeader("Access-Control-Allow-Origin", "*");
         }
     }
-    FacadeInterface facade = new Facade(new PostgreSQLDataAccess(new PostgreSQLConnector().SQLConnector()), new Neo4jDataAccess());
+    FacadeInterface facade = new Facade(new PostgreSQLDataAccess(new PostgreSQLConnector().SQLConnector()), new Neo4jDataAccess(new Neo4jConnector()));
 
     @GET
     @Path("getBookAuthorByCity/{id}")
