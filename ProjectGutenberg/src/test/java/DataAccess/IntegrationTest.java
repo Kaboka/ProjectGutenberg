@@ -1,5 +1,6 @@
 package DataAccess;
 
+import Model.Book;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -55,8 +56,11 @@ public class IntegrationTest {
     @Test
     public void testGetBookAuthorCityByAuthor() throws SQLException{
         String author = "Muir, John";
-        String actual = dataAccess.getBookAuthorCityByAuthor(author).get(0).getTitle();
-        Assert.assertThat(actual, is(equalTo("The Mountains of California")));
+        ArrayList<Book> res = dataAccess.getBookAuthorCityByAuthor(author);
+        String title = res.get(0).getTitle();
+        String city = res.get(0).getCities().get(0).getName();
+        Assert.assertThat(title, is(equalTo("The Mountains of California")));
+        Assert.assertThat(city, is(equalTo("Santa Cruz")));
     }
     
     @Test

@@ -64,4 +64,16 @@ public class UnitTest {
         Mockito.when(stmt.executeQuery()).thenThrow(new SQLException());
         ArrayList<Book> books = dataAccess.getBookAuthorByCity("London or 1 = 1--");
     }
+    
+    @Test
+    public void getBookAuthorCityByAuthor() throws SQLException {
+        Mockito.when(con.prepareStatement(anyString())).thenReturn(stmt);
+        Mockito.when(stmt.executeQuery()).thenReturn(resultSet);
+        Mockito.when(resultSet.next()).thenReturn(true).thenReturn(false);
+        Mockito.when(resultSet.getString(1)).thenReturn("The Great English Short-Story Writers, Volume 1");
+        Mockito.when(resultSet.getString(2)).thenReturn("Hawthorne, Nathaniel");
+        ArrayList<Book> books = dataAccess.getBookAuthorByCity("Hawthorne, Nathaniel");
+        assertThat(books.get(0).getTitle(), is(equalTo("The Great English Short-Story Writers, Volume 1")));
+        assertThat(books.get(0).getAuthor(), is(equalTo("Hawthorne, Nathaniel")));
+    }
 }
