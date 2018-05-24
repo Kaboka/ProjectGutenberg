@@ -39,6 +39,66 @@ Vi har valgt at forholdet mellem forfatter og bøger skal gå fra forfatter til 
 Book → City,
 Forholdet mellem bog og by skal gå fra bog til by. Man skal kunne finde ud af hvilken by en bog nævner.
 
+## Datamodellering i applikation
+
+Skrives her
+
+## Importering af data
+
+### Setup-guide
+
+#### PostgreSQL
+
+1. Download TAR fil.
+2. Download pgAdmin 4.
+3. Opret skema kaldet “schemaGutenberg”.
+4. Kør følgende query:
+
+Create function Haversine(lon1 float, lat1 float, lon2 float, lat2 float) returns float AS $$
+BEGIN
+	RETURN (2 * 3961 * asin(sqrt((sin(radians((lat2 - lat1) / 2))) ^ 2 + cos(radians(lat1)) * cos(radians(lat2)) * (sin(radians((lon2 - lon1) / 2))) ^ 2)));
+	END;
+$$ LANGUAGE plpgsql;
+
+#### Neo4j
+
+1. Download alle CSV filerne.
+2. Download Neo4j Desktop.
+3. Opret nyt projekt, anvend kode 1234.
+4. Åben for projektet og klik “Import”. Flyt derefter alle CSV filerne til denne mappe. 
+5. Åben projektet op i din browser.
+6. Kør følgende queries: 
+
+##### Import Authors
+
+LOAD CSV WITH HEADERS FROM "file:///author.csv" AS csvLine
+CREATE (:AUTHOR { id: toInt(csvLine.id), author_name: (csvLine.name)})
+
+##### Import Books
+LOAD CSV WITH HEADERS FROM "file:///book.csv" AS csvLine
+CREATE (:BOOK { id: toInt(csvLine.id), book_name: (csvLine.title)});
+
+##### Import Cities
+LOAD CSV WITH HEADERS FROM "file:///cities.csv" AS csvLine
+CREATE (:CITY { id: toInt(csvLine.id), city_name: csvLine.city_name, longitude: toFloat(csvLine.longitude), latitude: toFloat(csvLine.latitude)})
+
+##### Indexer ID’erne
+CREATE INDEX ON :AUTHOR (id)
+CREATE INDEX ON :BOOK (id)
+CREATE INDEX ON :CITY (id)
+
+##### Book_Author Written (mellemtabel)
+LOAD CSV WITH HEADERS FROM "file:///book_author.csv" AS csvLine
+MATCH (a:AUTHOR { id: toInt(csvLine.author_id)}),
+ (b:BOOK { id: toInt(csvLine.book_id)})
+CREATE (a)-[:WRITTEN]->(b)
+
+##### Book_City Mention (mellemtabel)
+USING PERIODIC COMMIT 500
+LOAD CSV WITH HEADERS FROM "file:///book_city.csv" AS csvLine
+MATCH (a:BOOK { id: toInt(csvLine.book_id)}),
+ (b:CITY { id: toInt(csvLine.city_id)})
+CREATE (a)-[:MENTION]->(b)
 
 ## Queries
 
