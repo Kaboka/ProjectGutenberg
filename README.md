@@ -1,17 +1,3 @@
-```
-CREATE OR REPLACE FUNCTION "schemaGutenberg".haversine(
-	lon1 double precision,
-	lat1 double precision,
-	lon2 double precision,
-	lat2 double precision)
-    RETURNS double precision
-    LANGUAGE 'plpgsql'
-
-    COST 100
-    VOLATILE 
-AS $BODY$
-``` 
-
 # ProjectGutenberg
 ##### Philip West Christiansen, Kasper Karstensen & Emilie Hinsch Nielsen
 ##### Forår 2018, Til: Rolf-Helge Pfeiffer & Jens Egholm Pedersen, Afleveret: 28/05/2018
@@ -120,8 +106,10 @@ CREATE (a)-[:MENTION]->(b)
 
 ##### 1. Given a city name your application returns all book titles with corresponding authors that mention this city.
 
+```sql
 SELECT book_title, author_name FROM "schemaGutenberg".book AS book 
 INNER JOIN "schemaGutenberg"."book-author" AS book_author ON (book.id = book_author.book_id) INNER JOIN "schemaGutenberg".author AS author ON (book_author.author_id = author.id) INNER JOIN "schemaGutenberg"."book-city" AS book_city ON (book.id = book_city.book_id) INNER JOIN  "schemaGutenberg".city AS city ON (book_city.city_id = city.id) WHERE city.city_name = 'London';
+```
 
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/P_1.png)
