@@ -1,7 +1,15 @@
-```ruby
-def index
-  puts "hello world"
-end
+```sql
+CREATE OR REPLACE FUNCTION "schemaGutenberg".haversine(
+	lon1 double precision,
+	lat1 double precision,
+	lon2 double precision,
+	lat2 double precision)
+    RETURNS double precision
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+AS $BODY$
 ``` 
 
 # ProjectGutenberg
