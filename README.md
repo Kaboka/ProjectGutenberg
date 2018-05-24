@@ -179,9 +179,11 @@ I alt 1.847 resultater.
 
 ##### 1. Given a city name your application returns all book titles with corresponding authors that mention this city.
 
+```sql
 Match (c:CITY)<-[:MENTION]-(b:BOOK)<-[:WRITTEN]-(a:AUTHOR) 
 where c.city_name = 'London' 
 return b, a;
+```
 
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_1.png)
