@@ -26,5 +26,5 @@ Vi vil gerne se hvordan denne performer i forhold til en nyere type af database.
 Vi har valgt at arbejde med en graph database i form af Neo4J. Dette er den nyeste form for database som vi har arbejdet med. Ingen i gruppe havde hørt om graph databaser før vores undervisning og vil derfor gerne undersøge hvordan den performer i forhold til en “klassisk” database. Vi mener også at vi forholdsvis nemt vil kunne strukturere den data som vores applikation skal bruge i form af noder og edges.
 
 # Datamodellering i databaser
-![alt text](https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350)
+![alt text](http://prntscr.com/jlyvpx)
 
