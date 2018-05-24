@@ -28,8 +28,7 @@ Vi har valgt at arbejde med en graph database i form af Neo4J. Dette er den nyes
 # Datamodellering i databaser
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/datamodel_post.png)
 
-## PostgreSQL
-### Queries
+### PostgreSQL - Queries
 
 ##### 1. Given a city name your application returns all book titles with corresponding authors that mention this city.
 
@@ -63,4 +62,46 @@ SELECT book_title, city_name FROM "schemaGutenberg".book AS book INNER JOIN "sch
 
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/P_4.png)
+I alt x resultater. 
+
+### Neo4j - Queries
+
+##### 1. Given a city name your application returns all book titles with corresponding authors that mention this city.
+
+Match (c:CITY)<-[:MENTION]-(b:BOOK)<-[:WRITTEN]-(a:AUTHOR) 
+where c.city_name = 'London' 
+
+##### Output:
+![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_1.png)
+I alt 45.054 resultater.
+
+##### 2. Given a book title, your application plots all cities mentioned in this book onto a map.
+
+Match (c:CITY)<-[:MENTION]-(b:BOOK) 
+where b.book_name = 'An Attic Philosopher in Paris — Volume 2' 
+return c, b;
+
+##### Output:
+![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_2.png)
+I alt 29 resultater.
+
+##### 3. Given an author name your application lists all books written by that author and plots all cities mentioned in any of the books onto a map.
+
+Match (c:CITY)<-[:MENTION]-(b:BOOK)<-[:WRITTEN]-(a:AUTHOR) 
+where a.author_name = 'United States. Central Intelligence Agency' 
+return b, c, a;
+
+##### Output:
+![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_3.png)
+I alt 17.613 resultater. 
+
+##### 4. Given a geolocation, your application lists all books mentioning a city in vicinity of the given geolocation.
+
+MATCH (c:CITY)<-[:MENTION]-(b:BOOK) 
+WITH b, c, distance(point({ longitude: c.longitude, latitude: c.latitude }) , point({ longitude: 12.56553, latitude: 55.67594 })) as dist 
+WHERE dist<=10000 
+RETURN b, c;
+
+##### Output:
+![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_4.png)
 I alt x resultater. 
