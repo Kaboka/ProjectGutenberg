@@ -26,9 +26,16 @@ Vi vil gerne se hvordan denne performer i forhold til en nyere type af database.
 Vi har valgt at arbejde med en graph database i form af Neo4J. Dette er den nyeste form for database som vi har arbejdet med. Ingen i gruppe havde hørt om graph databaser før vores undervisning og vil derfor gerne undersøge hvordan den performer i forhold til en “klassisk” database. Vi mener også at vi forholdsvis nemt vil kunne strukturere den data som vores applikation skal bruge i form af noder og edges.
 
 # Datamodellering i databaser
+
+## PostgreSQL
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/datamodel_post.png)
 
-### PostgreSQL - Queries
+## Neo4j
+![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/datamodel_neo.png)
+
+## Queries
+
+### PostgreSQL
 
 ##### 1. Given a city name your application returns all book titles with corresponding authors that mention this city.
 
@@ -64,7 +71,7 @@ SELECT book_title, city_name FROM "schemaGutenberg".book AS book INNER JOIN "sch
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/P_4.png)
 I alt 1.847 resultater.
 
-### Neo4j - Queries
+### Neo4j
 
 ##### 1. Given a city name your application returns all book titles with corresponding authors that mention this city.
 
