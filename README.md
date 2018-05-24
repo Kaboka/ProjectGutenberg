@@ -69,7 +69,10 @@ Skrives her
 1. Download TAR fil (https://drive.google.com/open?id=12vjsLJsbEYtgJsN50F4h85mWxCltRw7b).
 2. Download pgAdmin 4.
 3. Opret skema kaldet “schemaGutenberg”.
-4. Kør følgende query:
+4. Højreklik på "schemaGutenberg" og tryk restore.
+5. Ved filename finder du TAR filen og vælger den. 
+6. Tryk restore. 
+7. Kør følgende query:
 
 ```sql
 Create function Haversine(lon1 float, lat1 float, lon2 float, lat2 float) returns float AS $$
