@@ -62,7 +62,7 @@ SELECT book_title, city_name FROM "schemaGutenberg".book AS book INNER JOIN "sch
 
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/P_4.png)
-I alt x resultater. 
+I alt 1847 resultater.
 
 ### Neo4j - Queries
 
@@ -104,4 +104,4 @@ RETURN b, c;
 
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_4.png)
-I alt x resultater. 
+I alt 1847 resultater.
