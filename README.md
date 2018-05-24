@@ -12,10 +12,11 @@
   * [Datamodellering i databaser](#datamodellering-i-databaser)  
       * [PostgreSQL](#postgresql)
       * [Neo4j](#neo4j)
-      * [Datamodellering i applikation](#datamodellering-i-applikation)
-      * [Importering af data](#importering-af-data)
+  * [Datamodellering i applikation](#datamodellering-i-applikation)  
       * [Importering af data](#importering-af-data)
 		* [Setup-guide](#setup-guide)
+			* [PostgreSQL](#postgresql-1)
+			* [Neo4j](#neo4j-1)
 <!--ts-->
 
 # Introduktion 
@@ -55,7 +56,7 @@ Vi har valgt at forholdet mellem forfatter og bøger skal gå fra forfatter til 
 Book → City,
 Forholdet mellem bog og by skal gå fra bog til by. Man skal kunne finde ud af hvilken by en bog nævner.
 
-## Datamodellering i applikation
+# Datamodellering i applikation
 
 Skrives her
 
