@@ -33,10 +33,10 @@ Vi har valgt at arbejde med en graph database i form af Neo4J. Dette er den nyes
 ## Neo4j
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/datamodel_neo.png)
 
-Author → Book
+Author → Book,
 Vi har valgt at forholdet mellem forfatter og bøger skal gå fra forfatter til bøger. Det har vi valgt da der er et krav om at man skal kunne finde de bøger en forfatter har skrevet.
 
-Book → City
+Book → City,
 Forholdet mellem bog og by skal gå fra bog til by. Man skal kunne finde ud af hvilken by en bog nævner.
 
 
