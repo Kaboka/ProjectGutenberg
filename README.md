@@ -7,7 +7,11 @@
   * [Introduktion](#introduktion)  
   * [Projektbeskrivelse](#projektbeskrivelse)  
   * [Valg af databaser](#valg-af-databaser)  
-      * [Relationel database](#relationel-database)    
+      * [Relationel database](#relationel-database)  
+      * [Graph database](#graph-database)  
+  * [Datamodellering i databaser](#datamodellering-i-databaser)  
+      * [PostgreSQL](#postgresql)
+      * [Neo4j](#neo4j)
 <!--ts-->
 
 # Introduktion 
