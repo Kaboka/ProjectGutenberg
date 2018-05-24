@@ -13,10 +13,10 @@
       * [PostgreSQL](#postgresql)
       * [Neo4j](#neo4j)
   * [Datamodellering i applikation](#datamodellering-i-applikation)  
-      * [Importering af data](#importering-af-data)
-		* [Setup-guide](#setup-guide)
-			* [PostgreSQL](#postgresql-1)
-			* [Neo4j](#neo4j-1)
+  * [Importering af data](#importering-af-data)
+      * [Setup-guide](#setup-guide)
+		* [PostgreSQL](#postgresql-1)
+		* [Neo4j](#neo4j-1)
 <!--ts-->
 
 # Introduktion 
