@@ -5,8 +5,8 @@
 # Indholdsfortegnelse  
 [Introduktion](#introduktion)  
 [Projektbeskrivelse](#projektbeskrivelse)  
-[Valg af databaser](#valgafdatabaser)
-[Relationel database](#relationel database)  
+[Valg af databaser](#valg-af-databaser)
+[Relationel database](#relationel-database)  
 
 
 
