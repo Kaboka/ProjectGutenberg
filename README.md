@@ -54,11 +54,13 @@ Skrives her
 3. Opret skema kaldet “schemaGutenberg”.
 4. Kør følgende query:
 
+```sql
 Create function Haversine(lon1 float, lat1 float, lon2 float, lat2 float) returns float AS $$
 BEGIN
 	RETURN (2 * 3961 * asin(sqrt((sin(radians((lat2 - lat1) / 2))) ^ 2 + cos(radians(lat1)) * cos(radians(lat2)) * (sin(radians((lon2 - lon1) / 2))) ^ 2)));
 	END;
 $$ LANGUAGE plpgsql;
+```
 
 #### Neo4j
 
