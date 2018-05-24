@@ -6,7 +6,7 @@
 [Introduktion](#introduktion)  
 [Projektbeskrivelse](#projektbeskrivelse)  
 [Valg af databaser](#valg-af-databaser)
-- [Relationel database](#relationel-database)  
+[Relationel database](#relationel-database)  
 
 
 
