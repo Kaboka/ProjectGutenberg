@@ -1,4 +1,4 @@
-```sql
+```csharp
 CREATE OR REPLACE FUNCTION "schemaGutenberg".haversine(
 	lon1 double precision,
 	lat1 double precision,
