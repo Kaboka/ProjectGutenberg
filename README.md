@@ -15,7 +15,7 @@
       * [Datamodellering i applikation](#datamodellering-i-applikation)
       * [Importering af data](#importering-af-data)
       * [Importering af data](#importering-af-data)
-            * [Importering af data](#importering-af-data)
+		* [Importering af data](#importering-af-data)
 <!--ts-->
 
 # Introduktion 
