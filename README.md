@@ -70,6 +70,7 @@ I alt 1.847 resultater.
 
 Match (c:CITY)<-[:MENTION]-(b:BOOK)<-[:WRITTEN]-(a:AUTHOR) 
 where c.city_name = 'London' 
+return b, a;
 
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_1.png)
