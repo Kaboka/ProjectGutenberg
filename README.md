@@ -31,5 +31,7 @@ Vi har valgt at arbejde med en graph database i form af Neo4J. Dette er den nyes
 ## PostgreSQL
 ### Queries
 
-##### Given a city name your application returns all book titles with corresponding authors that mention this city.
+##### 1. Given a city name your application returns all book titles with corresponding authors that mention this city.
+
+SELECT book_title, author_name FROM "schemaGutenberg".book AS book INNER JOIN "schemaGutenberg"."book-author" AS book_author ON (book.id = book_author.book_id) INNER JOIN "schemaGutenberg".author AS author ON (book_author.author_id = author.id) INNER JOIN "schemaGutenberg"."book-city" AS book_city ON (book.id = book_city.book_id) INNER JOIN  "schemaGutenberg".city AS city ON (book_city.city_id = city.id) WHERE city.city_name = 'London';
 
