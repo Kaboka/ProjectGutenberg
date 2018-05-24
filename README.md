@@ -4,10 +4,10 @@
 
 # Indholdsfortegnelse  
 <!--ts-->
-[Introduktion](#introduktion)  
-[Projektbeskrivelse](#projektbeskrivelse)  
-[Valg af databaser](#valg-af-databaser)  
-[Relationel database](#relationel-database)    
+  * [Introduktion](#introduktion)  
+  * [Projektbeskrivelse](#projektbeskrivelse)  
+  * [Valg af databaser](#valg-af-databaser)  
+  * [Relationel database](#relationel-database)    
 <!--ts-->
 
 # Introduktion 
