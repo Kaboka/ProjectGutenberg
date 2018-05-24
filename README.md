@@ -12,6 +12,10 @@
   * [Datamodellering i databaser](#datamodellering-i-databaser)  
       * [PostgreSQL](#postgresql)
       * [Neo4j](#neo4j)
+      * [Datamodellering i applikation](#datamodellering-i-applikation)
+      * [Importering af data](#importering-af-data)
+      * [Importering af data](#importering-af-data)
+            * [Importering af data](#importering-af-data)
 <!--ts-->
 
 # Introduktion 
