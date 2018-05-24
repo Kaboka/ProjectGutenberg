@@ -71,34 +71,51 @@ $$ LANGUAGE plpgsql;
 
 ##### Import Authors
 
+```
 LOAD CSV WITH HEADERS FROM "file:///author.csv" AS csvLine
 CREATE (:AUTHOR { id: toInt(csvLine.id), author_name: (csvLine.name)})
+```
 
 ##### Import Books
+
+```
 LOAD CSV WITH HEADERS FROM "file:///book.csv" AS csvLine
 CREATE (:BOOK { id: toInt(csvLine.id), book_name: (csvLine.title)});
+```
 
 ##### Import Cities
+```
 LOAD CSV WITH HEADERS FROM "file:///cities.csv" AS csvLine
 CREATE (:CITY { id: toInt(csvLine.id), city_name: csvLine.city_name, longitude: toFloat(csvLine.longitude), latitude: toFloat(csvLine.latitude)})
+```
 
 ##### Indexer ID’erne
+```
 CREATE INDEX ON :AUTHOR (id)
+```
+```
 CREATE INDEX ON :BOOK (id)
+```
+```
 CREATE INDEX ON :CITY (id)
+```
 
 ##### Book_Author Written (mellemtabel)
+```
 LOAD CSV WITH HEADERS FROM "file:///book_author.csv" AS csvLine
 MATCH (a:AUTHOR { id: toInt(csvLine.author_id)}),
  (b:BOOK { id: toInt(csvLine.book_id)})
 CREATE (a)-[:WRITTEN]->(b)
+```
 
 ##### Book_City Mention (mellemtabel)
+```
 USING PERIODIC COMMIT 500
 LOAD CSV WITH HEADERS FROM "file:///book_city.csv" AS csvLine
 MATCH (a:BOOK { id: toInt(csvLine.book_id)}),
  (b:CITY { id: toInt(csvLine.city_id)})
 CREATE (a)-[:MENTION]->(b)
+```
 
 ## Queries
 
