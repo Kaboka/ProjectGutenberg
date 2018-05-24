@@ -60,11 +60,11 @@ Forholdet mellem bog og by skal gå fra bog til by. Man skal kunne finde ud af h
 
 Skrives her
 
-## Importering af data
+# Importering af data
 
-### Setup-guide
+## Setup-guide
 
-#### PostgreSQL
+### PostgreSQL
 
 1. Download TAR fil (https://drive.google.com/open?id=12vjsLJsbEYtgJsN50F4h85mWxCltRw7b).
 2. Download pgAdmin 4.
@@ -79,7 +79,7 @@ BEGIN
 $$ LANGUAGE plpgsql;
 ```
 
-#### Neo4j
+### Neo4j
 
 1. Download zip-fil og unzip (https://drive.google.com/open?id=1OSrv945f4tmsOWqkIUhoztRUjreimmnD).
 2. Download Neo4j Desktop.
@@ -88,27 +88,27 @@ $$ LANGUAGE plpgsql;
 5. Åben projektet op i din browser.
 6. Kør følgende queries: 
 
-##### Import Authors
+#### Import Authors
 
 ```
 LOAD CSV WITH HEADERS FROM "file:///author.csv" AS csvLine
 CREATE (:AUTHOR { id: toInt(csvLine.id), author_name: (csvLine.name)})
 ```
 
-##### Import Books
+#### Import Books
 
 ```
 LOAD CSV WITH HEADERS FROM "file:///book.csv" AS csvLine
 CREATE (:BOOK { id: toInt(csvLine.id), book_name: (csvLine.title)});
 ```
 
-##### Import Cities
+#### Import Cities
 ```
 LOAD CSV WITH HEADERS FROM "file:///cities.csv" AS csvLine
 CREATE (:CITY { id: toInt(csvLine.id), city_name: csvLine.city_name, longitude: toFloat(csvLine.longitude), latitude: toFloat(csvLine.latitude)})
 ```
 
-##### Indexer ID’erne
+#### Indexer ID’erne
 ```
 CREATE INDEX ON :AUTHOR (id)
 ```
@@ -119,7 +119,7 @@ CREATE INDEX ON :BOOK (id)
 CREATE INDEX ON :CITY (id)
 ```
 
-##### Book_Author Written (mellemtabel)
+#### Book_Author Written (mellemtabel)
 ```
 LOAD CSV WITH HEADERS FROM "file:///book_author.csv" AS csvLine
 MATCH (a:AUTHOR { id: toInt(csvLine.author_id)}),
@@ -127,7 +127,7 @@ MATCH (a:AUTHOR { id: toInt(csvLine.author_id)}),
 CREATE (a)-[:WRITTEN]->(b)
 ```
 
-##### Book_City Mention (mellemtabel)
+#### Book_City Mention (mellemtabel)
 ```
 USING PERIODIC COMMIT 500
 LOAD CSV WITH HEADERS FROM "file:///book_city.csv" AS csvLine
