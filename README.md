@@ -66,7 +66,7 @@ Skrives her
 
 #### PostgreSQL
 
-1. Download TAR fil.
+1. Download TAR fil (https://drive.google.com/open?id=12vjsLJsbEYtgJsN50F4h85mWxCltRw7b).
 2. Download pgAdmin 4.
 3. Opret skema kaldet “schemaGutenberg”.
 4. Kør følgende query:
@@ -81,10 +81,10 @@ $$ LANGUAGE plpgsql;
 
 #### Neo4j
 
-1. Download alle CSV filerne.
+1. Download zip-fil og unzip (https://drive.google.com/open?id=1OSrv945f4tmsOWqkIUhoztRUjreimmnD).
 2. Download Neo4j Desktop.
 3. Opret nyt projekt, anvend kode 1234.
-4. Åben for projektet og klik “Import”. Flyt derefter alle CSV filerne til denne mappe. 
+4. Åben for projektet og klik “Import”. Flyt derefter alle CSV filerne fra unzippet zip-fil til denne mappe. 
 5. Åben projektet op i din browser.
 6. Kør følgende queries: 
 
