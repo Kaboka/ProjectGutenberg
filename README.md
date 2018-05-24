@@ -126,8 +126,15 @@ I alt 45.054 resultater.
 
 ##### 2. Given a book title, your application plots all cities mentioned in this book onto a map.
 
-SELECT book_title, author_name FROM "schemaGutenberg".book AS book 
-INNER JOIN "schemaGutenberg"."book-author" AS book_author ON (book.id = book_author.book_id) INNER JOIN "schemaGutenberg".author AS author ON (book_author.author_id = author.id) INNER JOIN "schemaGutenberg"."book-city" AS book_city ON (book.id = book_city.book_id) INNER JOIN  "schemaGutenberg".city AS city ON (book_city.city_id = city.id) WHERE city.city_name = 'London';
+```sql
+SELECT city_name, city.longitude, city.latitude 
+FROM "schemaGutenberg".city AS city 
+INNER JOIN "schemaGutenberg"."book-city" AS book_city 
+ON (city.id = book_city.city_id) 
+INNER JOIN "schemaGutenberg".book AS book 
+ON (book_city.book_id = book.id) 
+WHERE book_title = 'An Attic Philosopher in Paris — Volume 2';
+```
 
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/P_2.png)
@@ -135,7 +142,19 @@ I alt 29 resultater.
 
 ##### 3. Given an author name your application lists all books written by that author and plots all cities mentioned in any of the books onto a map.
 
-SELECT book_title, author_name, city_name, city.longitude, city.latitude FROM "schemaGutenberg".book AS book INNER JOIN "schemaGutenberg"."book-author" AS book_author ON (book.id = book_author.book_id) INNER JOIN "schemaGutenberg".author AS author ON (book_author.author_id = author.id)	INNER JOIN "schemaGutenberg"."book-city" AS book_city ON (book.id = book_city.book_id) INNER JOIN  "schemaGutenberg".city AS city ON (book_city.city_id = city.id) WHERE author.author_name = 'United States. Central Intelligence Agency';
+```sql
+SELECT book_title, author_name, city_name, city.longitude, city.latitude 
+FROM "schemaGutenberg".book AS book 
+INNER JOIN "schemaGutenberg"."book-author" AS book_author 
+ON (book.id = book_author.book_id) 
+INNER JOIN "schemaGutenberg".author AS author 
+ON (book_author.author_id = author.id)	
+INNER JOIN "schemaGutenberg"."book-city" AS book_city 
+ON (book.id = book_city.book_id) 
+INNER JOIN  "schemaGutenberg".city AS city 
+ON (book_city.city_id = city.id) 
+WHERE author.author_name = 'United States. Central Intelligence Agency';
+```
 
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/P_3.png)
@@ -143,7 +162,14 @@ I alt 17.613 resultater.
 
 ##### 4. Given a geolocation, your application lists all books mentioning a city in vicinity of the given geolocation.
 
-SELECT book_title, city_name FROM "schemaGutenberg".book AS book INNER JOIN "schemaGutenberg"."book-city" AS book_city ON (book.id = book_city.book_id) INNER JOIN  "schemaGutenberg".city AS city ON (book_city.city_id = city.id) WHERE Haversine('12.56553', '55.67594 ', city.longitude, city.latitude) < 10;
+```sql
+SELECT book_title, city_name FROM "schemaGutenberg".book AS book 
+INNER JOIN "schemaGutenberg"."book-city" AS book_city 
+ON (book.id = book_city.book_id) 
+INNER JOIN  "schemaGutenberg".city AS city 
+ON (book_city.city_id = city.id) 
+WHERE Haversine('12.56553', '55.67594 ', city.longitude, city.latitude) < 10;
+```
 
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/P_4.png)
