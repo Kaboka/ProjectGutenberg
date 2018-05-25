@@ -17,6 +17,7 @@
       * [Setup-guide](#setup-guide)
 		* [PostgreSQL](#postgresql-1)
 		* [Neo4j](#neo4j-1)
+  * [Benchmark](#benchmark)
 <!--ts-->
 
 # Introduktion 
@@ -138,7 +139,6 @@ MATCH (a:BOOK { id: toInt(csvLine.book_id)}),
  (b:CITY { id: toInt(csvLine.city_id)})
 CREATE (a)-[:MENTION]->(b)
 ```
-
 ## Queries
 
 ### PostgreSQL
@@ -264,3 +264,13 @@ RETURN b, c;
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_4.png)
 I alt 1.847 resultater.
+
+# Benchmark
+Alle resultater er opgivet i ms. 
+
+|   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
+|---|---|---|---|---|
+|getBookAuthorByCity: |3827 |3652 |314 |70|
+|getCitiesByBookTitle: |330 |206 |9 |9 |
+|getBookAuthorCityByAuthor: |335 |318 |25 |31 |
+|getBookCityByGeolocation: |20565 |20156 |418 |314 |
