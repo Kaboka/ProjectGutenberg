@@ -309,3 +309,10 @@ Vi var overraskede over resultaterne for Neo4j, da nogle af tiderne var ekstremt
 |getBookCityByGeolocation: |10018 |10004 |
 
 #### Via API 
+Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benytter os af samme antal brugere, samt samme test data. 
+|   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
+|---|---|---|---|---|
+|getBookAuthorByCity: |348 |194 |283 |144|
+|getCitiesByBookTitle: |93 |96 |101 |110 |
+|getBookAuthorCityByAuthor: |106 |125 |105 |101 |
+|getBookCityByGeolocation: |514 |513 |480 |466 |
