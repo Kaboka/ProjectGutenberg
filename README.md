@@ -301,4 +301,11 @@ Alle resultater er opgivet i ms.
 
 Vi var overraskede over resultaterne for Neo4j, da nogle af tiderne var ekstremt langsomme. Derfor valgte vi at teste det direkte i Neo4j desktop, for at se om vi ville få samme resultat. 
 
+|   | Neo4j  Average  | Neo4j  Median |
+|---|---|---|
+|getBookAuthorByCity: |245,6 |191 |
+|getCitiesByBookTitle: |47 |46 |
+|getBookAuthorCityByAuthor: |56 |48 |
+|getBookCityByGeolocation: |10018 |10004 |
+
 #### Via API 
