@@ -313,7 +313,7 @@ Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benyt
 
 |   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
 |---|---|---|---|---|
-|getBookAuthorByCity: |348 |194 |283 |144 |
-|getCitiesByBookTitle: |93 |96 |101 |110 |
-|getBookAuthorCityByAuthor: |106 |125 |105 |101 |
-|getBookCityByGeolocation: |514 |513 |480 |466 |
+|getBookAuthorByCity: |2460 |1397 |317 |223 |
+|getCitiesByBookTitle: |1025 |1242 |82 |83 |
+|getBookAuthorCityByAuthor: |743 |824 |97 |105 |
+|getBookCityByGeolocation: |109003 |109024 |766 |768 |
