@@ -266,11 +266,39 @@ RETURN b, c;
 I alt 1.847 resultater.
 
 # Benchmark
+Vi har foretaget en benchmark af de to databaser. Til dette har vi brugt JMeter. 
+Vi har foretaget test med kald direkte til databasen, men også via vores API. 
+
+## Test setup
+
+System: 
+- Lenovo Thinkpad x220
+- Windows 10 Pro
+- CPU: Intel Core i7-2640M 2.80GHz
+- RAM: 8 GB
+
+Vi har valgt at simulere fem brugere, hvor hver bruger giver et forskelligt input. 
+Test dataen er som følger: 
+
+|Parameter   | Bruger 1  | Bruger 2 | Bruger 3 |   Bruger 4 |	Bruger 5 |
+|---|---|---|---|---|---|
+|city	|London	|Oslo	|Berlin	|Chicago |Tokyo	|
+|title	|The Watcher, and other weird stories |Reminiscences of Tolstoy, by His Son |Carmilla |A Brief History of the United States |Christopher Columbus |
+|author	|Jefferson, Thomas |Poe, Edgar Allan |Faxian |Twain, Mark |Hawthorne, Nathaniel |
+|latitude |25.0657 |-43.24895 |48.20849 |-27.56056 |50.85045 |
+|longitude |55.17128 |-65.30505	|16.37208 |151.95386 |4.34878 |
+
+## Resultater
 Alle resultater er opgivet i ms. 
 
+#### På JDBC
 |   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
 |---|---|---|---|---|
 |getBookAuthorByCity: |3827 |3652 |314 |70|
 |getCitiesByBookTitle: |330 |206 |9 |9 |
 |getBookAuthorCityByAuthor: |335 |318 |25 |31 |
 |getBookCityByGeolocation: |20565 |20156 |418 |314 |
+
+Vi var overraskede over resultaterne for Neo4j, da nogle af tiderne var ekstremt langsomme. Derfor valgte vi at teste det direkte i Neo4j desktop, for at se om vi ville få samme resultat. 
+
+#### Via API 
