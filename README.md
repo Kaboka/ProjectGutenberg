@@ -310,6 +310,7 @@ Vi var overraskede over resultaterne for Neo4j, da nogle af tiderne var ekstremt
 
 #### På JDBC efter indeksering
 Her er resultaterne efter dataen er blevet indekseret. Det skal bemærkes at vi her har kørt queries direkte på Neo4j databasen fra start. Samme test data og fremgansmåde er brugt i øvrigt. 
+
 |   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
 |---|---|---|---|---|
 |getBookAuthorByCity: |211,4 |114 |173 |76 |
