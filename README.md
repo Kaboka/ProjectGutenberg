@@ -323,7 +323,7 @@ Her er resultaterne efter dataen er blevet indekseret. Det skal bemærkes at vi 
 |getBookAuthorCityByAuthor: |49,8 |39 |18 |19 |
 |getBookCityByGeolocation: |10545 |10302 |330 |328 |
 
-#### Via API 
+#### Via API før indeksering
 Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benytter os af samme antal brugere, samt samme test data. 
 
 |   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
@@ -332,3 +332,12 @@ Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benyt
 |getCitiesByBookTitle: |1025 |1242 |82 |83 |
 |getBookAuthorCityByAuthor: |743 |824 |97 |105 |
 |getBookCityByGeolocation: |109003 |109024 |766 |768 |
+
+#### Via API efter indeksering
+
+|   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
+|---|---|---|---|---|
+|getBookAuthorByCity: |510 |238 |446 |240 |
+|getCitiesByBookTitle: |99 |93 |92 |93 |
+|getBookAuthorCityByAuthor: |196 |119 |107 |120 |
+|getBookCityByGeolocation: |65589 |65630 |512 |478 |
