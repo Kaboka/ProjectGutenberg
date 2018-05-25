@@ -311,10 +311,10 @@ Vi var overraskede over resultaterne for Neo4j, da nogle af tiderne var ekstremt
 #### På JDBC efter indeksering
 |   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
 |---|---|---|---|---|
-|getBookAuthorByCity: |3827 |3652 |173 |76 |
-|getCitiesByBookTitle: |330 |206 |3 |2 |
-|getBookAuthorCityByAuthor: |335 |318 |18 |19 |
-|getBookCityByGeolocation: |20565 |20156 |330 |328 |
+|getBookAuthorByCity: |211,4 |114 |173 |76 |
+|getCitiesByBookTitle: |5,6 |2 |3 |2 |
+|getBookAuthorCityByAuthor: |49,8 |39 |18 |19 |
+|getBookCityByGeolocation: |10545 |10302 |330 |328 |
 
 #### Via API 
 Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benytter os af samme antal brugere, samt samme test data. 
