@@ -12,6 +12,7 @@
   * [Datamodellering i databaser](#datamodellering-i-databaser)  
       * [PostgreSQL](#postgresql)
       * [Neo4j](#neo4j)
+  * [Preprocessering af data](#preprocessering-af-data)
   * [Datamodellering i applikation](#datamodellering-i-applikation)  
   * [Importering af data](#importering-af-data)
       * [Setup-guide](#setup-guide)
@@ -58,6 +59,10 @@ Book → City,
 Forholdet mellem bog og by skal gå fra bog til by. Man skal kunne finde ud af hvilken by en bog nævner.
 
 # Datamodellering i applikation
+
+Skrives her
+
+# Preprocessering af data
 
 Skrives her
 
