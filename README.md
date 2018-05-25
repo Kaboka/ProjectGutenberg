@@ -266,7 +266,7 @@ RETURN b, c;
 I alt 1.847 resultater.
 
 # Benchmark
-Vi har foretaget en benchmark af de to databaser. Til dette har vi brugt JMeter. 
+Vi har foretaget en benchmark af de to databaser både før og efter de blev indekseret. Til dette har vi brugt JMeter. 
 Vi har foretaget test med kald direkte til databasen, men også via vores API. 
 
 ## Test setup
@@ -291,7 +291,7 @@ Test dataen er som følger:
 ## Resultater
 Alle resultater er opgivet i ms. 
 
-#### På JDBC
+#### På JDBC før indeksering
 |   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
 |---|---|---|---|---|
 |getBookAuthorByCity: |3827 |3652 |314 |70 |
@@ -307,6 +307,14 @@ Vi var overraskede over resultaterne for Neo4j, da nogle af tiderne var ekstremt
 |getCitiesByBookTitle: |47 |46 |
 |getBookAuthorCityByAuthor: |56 |48 |
 |getBookCityByGeolocation: |10018 |10004 |
+
+#### På JDBC efter indeksering
+|   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
+|---|---|---|---|---|
+|getBookAuthorByCity: |3827 |3652 |173 |76 |
+|getCitiesByBookTitle: |330 |206 |3 |2 |
+|getBookAuthorCityByAuthor: |335 |318 |18 |19 |
+|getBookCityByGeolocation: |20565 |20156 |330 |328 |
 
 #### Via API 
 Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benytter os af samme antal brugere, samt samme test data. 
