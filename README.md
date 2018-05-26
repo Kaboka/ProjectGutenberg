@@ -12,6 +12,7 @@
   * [Datamodellering i databaser](#datamodellering-i-databaser)  
       * [PostgreSQL](#postgresql)
       * [Neo4j](#neo4j)
+  * [Preprocessering af data](#preprocessering-af-data)
   * [Datamodellering i applikation](#datamodellering-i-applikation)  
   * [Importering af data](#importering-af-data)
       * [Setup-guide](#setup-guide)
@@ -58,6 +59,10 @@ Book → City,
 Forholdet mellem bog og by skal gå fra bog til by. Man skal kunne finde ud af hvilken by en bog nævner.
 
 # Datamodellering i applikation
+
+Skrives her
+
+# Preprocessering af data
 
 Skrives her
 
@@ -266,7 +271,7 @@ RETURN b, c;
 I alt 1.847 resultater.
 
 # Benchmark
-Vi har foretaget en benchmark af de to databaser. Til dette har vi brugt JMeter. 
+Vi har foretaget en benchmark af de to databaser både før og efter de blev indekseret. Til dette har vi brugt JMeter. 
 Vi har foretaget test med kald direkte til databasen, men også via vores API. 
 
 ## Test setup
@@ -291,7 +296,7 @@ Test dataen er som følger:
 ## Resultater
 Alle resultater er opgivet i ms. 
 
-#### På JDBC
+#### På JDBC før indeksering
 |   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
 |---|---|---|---|---|
 |getBookAuthorByCity: |3827 |3652 |314 |70 |
@@ -308,7 +313,17 @@ Vi var overraskede over resultaterne for Neo4j, da nogle af tiderne var ekstremt
 |getBookAuthorCityByAuthor: |56 |48 |
 |getBookCityByGeolocation: |10018 |10004 |
 
-#### Via API 
+#### På JDBC efter indeksering
+Her er resultaterne efter dataen er blevet indekseret. Det skal bemærkes at vi her har kørt queries direkte på Neo4j databasen fra start. Samme test data og fremgansmåde er brugt i øvrigt. 
+
+|   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
+|---|---|---|---|---|
+|getBookAuthorByCity: |211,4 |114 |173 |76 |
+|getCitiesByBookTitle: |5,6 |2 |3 |2 |
+|getBookAuthorCityByAuthor: |49,8 |39 |18 |19 |
+|getBookCityByGeolocation: |10545 |10302 |330 |328 |
+
+#### Via API før indeksering
 Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benytter os af samme antal brugere, samt samme test data. 
 
 |   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
@@ -317,3 +332,12 @@ Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benyt
 |getCitiesByBookTitle: |1025 |1242 |82 |83 |
 |getBookAuthorCityByAuthor: |743 |824 |97 |105 |
 |getBookCityByGeolocation: |109003 |109024 |766 |768 |
+
+#### Via API efter indeksering
+
+|   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
+|---|---|---|---|---|
+|getBookAuthorByCity: |510 |238 |446 |240 |
+|getCitiesByBookTitle: |99 |93 |92 |93 |
+|getBookAuthorCityByAuthor: |196 |119 |107 |120 |
+|getBookCityByGeolocation: |65589 |65630 |512 |478 |
