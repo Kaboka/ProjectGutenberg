@@ -32,7 +32,7 @@
 		* [På JDBC før indeksering](#på-jdbc-før-indeksering)
 		* [På JDBC efter indeksering](#på-jdbc-efter-indeksering)
 		* [Via API før indeksering](#via-api-før-indeksering)
-      * [Diskussion af benchmark resultater](#diskussion-af-benchmark-resultater)
+  * [Diskussion af benchmark resultater](#diskussion-af-benchmark-resultater)
   * [Konklusion](#konklusion)
 <!--ts-->
 
@@ -437,7 +437,7 @@ Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benyt
 |getBookAuthorCityByAuthor: |196 |119 |107 |120 |
 |getBookCityByGeolocation: |65589 |65630 |512 |478 |
 
-## Diskussion af benchmark resultater
+# Diskussion af benchmark resultater
 
 Vi må tage højde for det faktum at JMeter til tider har givet nogle resultater vi ikke vurderer stemmer overens med virkeligheden. Det gør desværre vores resultater en smule usikre, men vi har forsøgt at undersøge dette og mener at kunne stole på de endelige resultater. 
 En anden gang ville det dog være værd at undersøge om der findes bedre værktøjer end lige JMeter til test af især Neo4j. 
