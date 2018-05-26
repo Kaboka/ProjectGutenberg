@@ -17,6 +17,7 @@
       * [Setup-guide](#setup-guide)
 		* [PostgreSQL](#postgresql-1)
 		* [Neo4j](#neo4j-1)
+  * [Benchmark](#benchmark)
 <!--ts-->
 
 # Introduktion 
@@ -138,7 +139,6 @@ MATCH (a:BOOK { id: toInt(csvLine.book_id)}),
  (b:CITY { id: toInt(csvLine.city_id)})
 CREATE (a)-[:MENTION]->(b)
 ```
-
 ## Queries
 
 ### PostgreSQL
@@ -264,3 +264,56 @@ RETURN b, c;
 ##### Output:
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_4.png)
 I alt 1.847 resultater.
+
+# Benchmark
+Vi har foretaget en benchmark af de to databaser. Til dette har vi brugt JMeter. 
+Vi har foretaget test med kald direkte til databasen, men også via vores API. 
+
+## Test setup
+
+System: 
+- Lenovo Thinkpad x220
+- Windows 10 Pro
+- CPU: Intel Core i7-2640M 2.80GHz
+- RAM: 8 GB
+
+Vi har valgt at simulere fem brugere, hvor hver bruger giver et forskelligt input. 
+Test dataen er som følger: 
+
+|Parameter   | Bruger 1  | Bruger 2 | Bruger 3 |   Bruger 4 |	Bruger 5 |
+|---|---|---|---|---|---|
+|city	|London	|Oslo	|Berlin	|Chicago |Tokyo	|
+|title	|The Watcher, and other weird stories |Reminiscences of Tolstoy, by His Son |Carmilla |A Brief History of the United States |Christopher Columbus |
+|author	|Jefferson, Thomas |Poe, Edgar Allan |Faxian |Twain, Mark |Hawthorne, Nathaniel |
+|latitude |25.0657 |-43.24895 |48.20849 |-27.56056 |50.85045 |
+|longitude |55.17128 |-65.30505	|16.37208 |151.95386 |4.34878 |
+
+## Resultater
+Alle resultater er opgivet i ms. 
+
+#### På JDBC
+|   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
+|---|---|---|---|---|
+|getBookAuthorByCity: |3827 |3652 |314 |70 |
+|getCitiesByBookTitle: |330 |206 |9 |9 |
+|getBookAuthorCityByAuthor: |335 |318 |25 |31 |
+|getBookCityByGeolocation: |20565 |20156 |418 |314 |
+
+Vi var overraskede over resultaterne for Neo4j, da nogle af tiderne var ekstremt langsomme. Derfor valgte vi at teste det direkte i Neo4j desktop, for at se om vi ville få samme resultat. 
+
+|   | Neo4j  Average  | Neo4j  Median |
+|---|---|---|
+|getBookAuthorByCity: |245,6 |191 |
+|getCitiesByBookTitle: |47 |46 |
+|getBookAuthorCityByAuthor: |56 |48 |
+|getBookCityByGeolocation: |10018 |10004 |
+
+#### Via API 
+Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benytter os af samme antal brugere, samt samme test data. 
+
+|   | Neo4j  Average  | Neo4j  Median | Postgres Average | Postgres Median |
+|---|---|---|---|---|
+|getBookAuthorByCity: |2460 |1397 |317 |223 |
+|getCitiesByBookTitle: |1025 |1242 |82 |83 |
+|getBookAuthorCityByAuthor: |743 |824 |97 |105 |
+|getBookCityByGeolocation: |109003 |109024 |766 |768 |
