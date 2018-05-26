@@ -167,7 +167,7 @@ Først og fremmest åbnede vi csv filen ind i excel. Inde i excel tastede vi fil
 ### PostgreSQL
 
 1. Download TAR fil (https://drive.google.com/open?id=12vjsLJsbEYtgJsN50F4h85mWxCltRw7b).
-2. Download pgAdmin 4.
+2. Download pgAdmin 4 (https://www.pgadmin.org/download/).
 3. Opret skema kaldet “schemaGutenberg”.
 4. Højreklik på "schemaGutenberg" og tryk restore.
 5. Ved filename finder du TAR filen og vælger den. 
@@ -185,7 +185,7 @@ $$ LANGUAGE plpgsql;
 ### Neo4j
 
 1. Download zip-fil og unzip (https://drive.google.com/open?id=1OSrv945f4tmsOWqkIUhoztRUjreimmnD).
-2. Download Neo4j Desktop.
+2. Download Neo4j Desktop (https://neo4j.com/download/).
 3. Opret nyt projekt, anvend kode 1234.
 4. Åben for projektet og klik “Import”. Flyt derefter alle CSV filerne fra unzippet zip-fil til denne mappe. 
 5. Åben projektet op i din browser.
