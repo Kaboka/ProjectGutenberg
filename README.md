@@ -241,7 +241,7 @@ CREATE (a)-[:MENTION]->(b)
 
 # Benchmark
 Vi har foretaget en benchmark af de to databaser både før og efter de blev indekseret. Til dette har vi brugt JMeter. 
-Vi har foretaget test med kald direkte til databasen, men også via vores API. Først et overblik over vores forskellige quries. 
+Vi har foretaget test med kald direkte til databasen, men også via vores API. Først et overblik over vores forskellige queries. 
 
 ## Queries
 
