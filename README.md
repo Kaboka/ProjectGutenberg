@@ -459,3 +459,5 @@ Generelt synes vi at det har været et interessant projekt at arbejde med. Hele 
 En ting som vi kan se som kunne forbedres er den måde at byer bliver vist på vores kort. Som det er nu kan der være flere byer i verden der hedder det samme, så vi laver en markør for alle steder den by findes. En måde vi ser at dette kunne forbedres er hvis f.eks. Stanford toolet eller et andet tool kunne lave en dybere analyse af teksten. F.eks. hvis Washington, Boston og Florida, bliver fundet i en bog kunne de ud fra alle byer den har fundet prøve at give et procentvis gæt på hvilket land de er fra. 
 
 Fordi alle disse byer alle sammen findes i USA er der ret stor chance for at f.eks. Florida ikke er byen Florida i Mexico. Dette vil dog stadig kunne give nogle fejl da det f.eks. vil være svært at gøre for en bog der nævner byer i hele verden, men vi mener dog at det ville kunne give et resultat der er lidt mere nøjagtigt. 
+
+Ud fra vores benchmark samt oplevelser med modellering af dataen, vil vi anbefale Postgres til denne type projekt. 
