@@ -15,7 +15,7 @@
   * [Datamodellering i applikation](#datamodellering-i-applikation)  
   * [Importering af data](#importering-af-data)
       * [Preprocessering af data](#preprocessering-af-data)
-		* [Data fra RDF/XML filer](#datafra-rdfxml-filer)
+		* [Data fra RDF/XML filer](#data-fra-rdfxml-filer)
 		* [Books](#books)
 		* [Relationen mellem Book og Author](#relationen-mellem-book-og-author)
 		* [City mentions](#city-mentions)
