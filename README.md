@@ -97,7 +97,7 @@ En anden måde vi havde snakket om at gøre det på var at bruge DTO(Data Transf
 
 # Importering af data
 
-Dette afsnit handler om hvordan vi håndteret vores data. 
+Dette afsnit handler om hvordan vi håndterer vores data. 
 
 ## Preprocessering af data
 
