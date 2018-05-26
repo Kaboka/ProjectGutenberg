@@ -223,6 +223,11 @@ MATCH (a:BOOK { id: toInt(csvLine.book_id)}),
  (b:CITY { id: toInt(csvLine.city_id)})
 CREATE (a)-[:MENTION]->(b)
 ```
+
+# Benchmark
+Vi har foretaget en benchmark af de to databaser både før og efter de blev indekseret. Til dette har vi brugt JMeter. 
+Vi har foretaget test med kald direkte til databasen, men også via vores API. Først et overblik over vores forskellige quries. 
+
 ## Queries
 
 ### PostgreSQL
@@ -349,10 +354,6 @@ RETURN b, c;
 ![alt text](https://github.com/Kaboka/ProjectGutenberg/blob/master/Images/N_4.png)
 I alt 1.847 resultater.
 
-# Benchmark
-Vi har foretaget en benchmark af de to databaser både før og efter de blev indekseret. Til dette har vi brugt JMeter. 
-Vi har foretaget test med kald direkte til databasen, men også via vores API. 
-
 ## Test setup
 
 System: 
@@ -420,3 +421,26 @@ Her kører vi jmeter testen på API'et fremfor direkte på databaserne. Vi benyt
 |getCitiesByBookTitle: |99 |93 |92 |93 |
 |getBookAuthorCityByAuthor: |196 |119 |107 |120 |
 |getBookCityByGeolocation: |65589 |65630 |512 |478 |
+
+## Diskussion af benchmark resultater
+
+Vi må tage højde for det faktum at JMeter til tider har givet nogle resultater vi ikke vurderer stemmer overens med virkeligheden. Det gør desværre vores resultater en smule usikre, men vi har forsøgt at undersøge dette og mener at kunne stole på de endelige resultater. 
+En anden gang ville det dog være værd at undersøge om der findes bedre værktøjer end lige JMeter til test af især Neo4j. 
+
+Ud fra de benchmarks vi har lavet er der ikke stor forskel mellem Neo4j og Postgres når det gælder de tre første forespørgsler. Men når vi kommer til den fjerde hvor man skal finde alle bøger der nævner byer der ligger i nærheden af en geolocation er Neo4j meget langsommere. 
+Vi havde ikke regnet med at Neo4j ville være så meget langsommere til at returnere dette. 
+Vi vil mene at den store forskel kan skyldes at i Neo4J skal man finde alle book nodes og derefter hente location fra alle byer og derefter konvertere dataen til points. Det kan også skyldes den måde vi har modelleret vores data på da vores edge går BOOK →  CITY og vi ikke har et edge der går CITY → BOOK.
+
+
+Vi ser en markant stigning i søgetiden når vi kører vores test via API’et. For postgres får vi dog i alle tilfælde stadig tider som vi finder hurtige. For Neo4j gælder dette også undtagen geolocation som vi stadig finder uacceptabelt. Neo4j ser også en procentvis markant langsommere svartid og vi tror at det kan skyldes den måde vi konverterer mellem det resultat vi får fra databasen og vores Book og City objekter.
+
+I sidste ende vil vores anbefaling til lige netop dette projekt falde på Postgres. Med Postgres kan vi bygge en forholdsvis robust datamodel og eftersom dataen for dette projekt med stor sandsynlighed ikke ændre sig, passer det fint. 
+Står man til gengæld med et projekt med dybere relationer, vil Neo4j passe bedre. Dette skyldes at Neo4j kan håndtere disse relationer med stort set konstant tid.
+
+# Konklusion
+
+Generelt synes vi at det har været et interessant projekt at arbejde med. Hele idéen med at skulle gå fra den rå data til at formatere den og optimere den bedst muligt til de forskellige databaser kunne vi ret godt lide.
+
+En ting som vi kan se som kunne forbedres er den måde at byer bliver vist på vores kort. Som det er nu kan der være flere byer i verden der hedder det samme, så vi laver en markør for alle steder den by findes. En måde vi ser at dette kunne forbedres er hvis f.eks. Stanford toolet eller et andet tool kunne lave en dybere analyse af teksten. F.eks. hvis Washington, Boston og Florida, bliver fundet i en bog kunne de ud fra alle byer den har fundet prøve at give et procentvis gæt på hvilket land de er fra. 
+
+Fordi alle disse byer alle sammen findes i USA er der ret stor chance for at f.eks. Florida ikke er byen Florida i Mexico. Dette vil dog stadig kunne give nogle fejl da det f.eks. vil være svært at gøre for en bog der nævner byer i hele verden, men vi mener dog at det ville kunne give et resultat der er lidt mere nøjagtigt. 
