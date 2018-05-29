@@ -2,7 +2,6 @@
 function loadBookListAndMapFromAuthor() {
     
     var input = $("#authorInput").val();
-    $('.searchForm').keyup(function () {
         $.ajax({
             url: "http://localhost:8080/ProjectGutenberg/api/api/getBookAuthorCityByAuthor/" + input,
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -28,6 +27,5 @@ function loadBookListAndMapFromAuthor() {
                 $('#errorText').empty();
 
             }
-        });
     });
 };
