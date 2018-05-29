@@ -10,7 +10,7 @@ public class Neo4jConnector {
     private Session session;
     
     public Neo4jConnector() {
-        driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "1234"));
+        driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "class"));
     }
     
     public Neo4jConnector(Driver driver) {

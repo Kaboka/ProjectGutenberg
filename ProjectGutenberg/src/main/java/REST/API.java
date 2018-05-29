@@ -39,7 +39,10 @@ public class API {
     @Path("getBookAuthorByCity/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getBookAuthorByCity(@PathParam("id") String city_name) throws SQLException, NotFoundExceptionMapper {
+                                long nanoTime = System.nanoTime();
         List<Book> books = facade.getBookAuthorByCity(dbType.POSTGRESS, city_name);
+                                nanoTime = System.nanoTime() - nanoTime;
+        calculateAndShowResult(nanoTime,"getBookAuthorByCity");
         if (books.isEmpty()) {
             throw new NotFoundExceptionMapper("No books found with the given city name");
         }
@@ -51,7 +54,10 @@ public class API {
     @Produces(MediaType.APPLICATION_JSON)
     public String getCitiesByBookTitle(@PathParam("id") String book_title) throws SQLException, NotFoundExceptionMapper {
         allowCrossDomainAccess();
+                        long nanoTime = System.nanoTime();
         List<City> cities = facade.getCitiesByBookTitle(dbType.POSTGRESS, book_title);
+                        nanoTime = System.nanoTime() - nanoTime;
+        calculateAndShowResult(nanoTime,"getCitiesByBookTitle");
         if (cities.isEmpty()) {
             throw new NotFoundExceptionMapper("No cities found with the given book title");
         }
@@ -63,7 +69,10 @@ public class API {
     @Produces(MediaType.APPLICATION_JSON)
     public String getBookAuthorCityByAuthor(@PathParam("id") String author_name) throws SQLException, NotFoundExceptionMapper {
         allowCrossDomainAccess();
+                long nanoTime = System.nanoTime();
         List<Book> books = facade.getBookAuthorCityByAuthor(dbType.POSTGRESS, author_name);
+                nanoTime = System.nanoTime() - nanoTime;
+        calculateAndShowResult(nanoTime,"getBookAuthorCityByAuthor");
         if (books.isEmpty()) {
             throw new NotFoundExceptionMapper("No book found with the given author name");
         }
@@ -74,10 +83,18 @@ public class API {
     @Path("getBookCityByGeolocation/{latitude}/{longitude}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getBookCityByGeolocation(@PathParam("latitude") String latitude, @PathParam("longitude") String longitude) throws SQLException, NotFoundExceptionMapper {
+        long nanoTime = System.nanoTime();
         List<Book> books = facade.getBookCityByGeolocation(dbType.POSTGRESS, latitude, longitude);
+        nanoTime = System.nanoTime() - nanoTime;
+        calculateAndShowResult(nanoTime,"getBookCityByGeolocation");
         if (books.isEmpty()) {
             throw new NotFoundExceptionMapper("No book found with the given geolocation");
         }
         return new Gson().toJson(books);
+    }
+    
+    
+     private void calculateAndShowResult(long result, String text){
+         System.out.println(text + " " + " time: "  + (result/1000000));
     }
 }

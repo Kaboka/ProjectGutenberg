@@ -29,7 +29,7 @@ public class IntegrationTest {
     @Parameters
     public static Collection<DataAccessInterface> data() throws SQLException {
         Collection<DataAccessInterface> data = new ArrayList<>();
-        data.add(new Neo4jDataAccess(new Neo4jConnector()));
+  //      data.add(new Neo4jDataAccess(new Neo4jConnector()));
         data.add(new PostgreSQLDataAccess(new PostgreSQLConnector()));
         return data;
     }

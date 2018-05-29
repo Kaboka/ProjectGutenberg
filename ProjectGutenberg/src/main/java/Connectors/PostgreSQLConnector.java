@@ -8,10 +8,10 @@ public class PostgreSQLConnector {
 
     private Connection con = null;
 
-    private final String url = "jdbc:postgresql://localhost:5432/gutenberg";
-//    private final String url = "jdbc:postgresql://localhost:5432/postgres";
+//    private final String url = "jdbc:postgresql://localhost:5432/gutenberg";
+    private final String url = "jdbc:postgresql://localhost:5433/postgres";
     private final String username = "postgres";
-    private final String password = "1234";
+    private final String password = "hejsan";
 
     public Connection SQLConnector() {
         try {
